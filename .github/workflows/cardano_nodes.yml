@@ -19,7 +19,7 @@ jobs:
           mkdir -p ~/.ssh
           echo -e "${SSH_CERTIFICATE}" > ~/.ssh/id_rsa
           chmod 400 ~/.ssh/id_rsa
-          '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-          echo DEPLOY_IP=$DEPLOY_IP
+          'echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+          export DEPLOY_IP=$DEPLOY_IP
       - name: "Deploy cardano nodes on server"
         run: bash .github/workflows/scripts/deploy-nodes.sh
