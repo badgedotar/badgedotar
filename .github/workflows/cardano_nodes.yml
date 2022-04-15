@@ -1,6 +1,8 @@
 name: docker-compose-actions-workflow
 on:
   push:
+    paths: 
+     - 'cardano_nodes/**'
     branches:
       - main
 
@@ -22,4 +24,4 @@ jobs:
           echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
           export DEPLOY_IP=$DEPLOY_IP
       - name: "Deploy cardano nodes on server"
-        run: bash $GITHUB_ACTION_REPOSITORY/.github/workflows/scripts/deploy-nodes.sh
+        run: "bash $env.GITHUB_ACTION_PATH/.github/workflows/scripts/deploy-nodes.sh"
