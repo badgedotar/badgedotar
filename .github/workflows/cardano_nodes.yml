@@ -27,5 +27,5 @@ jobs:
           export DEPLOY_IP=$DEPLOY_IP
       - name: "Deploy cardano nodes on server"
         shell: bash
-        working-directory: scripts
+        working-directory: .github/workflows/scripts
         run: "./deploy-nodes.sh"
