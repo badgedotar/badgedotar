@@ -26,4 +26,6 @@ jobs:
           echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
           export DEPLOY_IP=$DEPLOY_IP
       - name: "Deploy cardano nodes on server"
-        run: "bash $env.GITHUB_ACTION_PATH/.github/workflows/scripts/deploy-nodes.sh"
+        shell: bash
+        working-directory: scripts
+        run: "./deploy-nodes.sh"
