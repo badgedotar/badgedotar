@@ -11,6 +11,7 @@ on:
 env:
   SSH_CERTIFICATE: "${{ secrets.SSH_CERTIFICATE }}"
   DEPLOY_IP: "api.badge.ar"
+
 jobs:
   deploy-nodes:
     runs-on: ubuntu-latest
