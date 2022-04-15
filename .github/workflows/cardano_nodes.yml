@@ -2,7 +2,9 @@ name: docker-compose-actions-workflow
 on:
   push:
     paths: 
-     - 'cardano_nodes/**'
+     - "cardano_nodes/**"
+     - ".github/workflows/cardano_nodes.yml"
+     - ".github/workflows/scripts/deploy-nodes.sh"
     branches:
       - main
 
