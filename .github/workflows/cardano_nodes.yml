@@ -22,6 +22,7 @@ jobs:
 
       - name: "Deploy cardano nodes on server"
         run: |
+          # MULTI-LINE COMMAND
           # DEBIAN_FRONTEND=noninteractive sudo apt update -y
           # DEBIAN_FRONTEND=noninteractive sudo apt install -y openssh-server
           mkdir -p ~/.ssh
