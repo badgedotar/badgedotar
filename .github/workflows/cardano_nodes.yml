@@ -22,8 +22,8 @@ jobs:
 
       - name: "Deploy cardano nodes on server"
         run: |
-          DEBIAN_FRONTEND=noninteractive sudo apt update -y
-          DEBIAN_FRONTEND=noninteractive sudo apt install -y openssh-server
+          # DEBIAN_FRONTEND=noninteractive sudo apt update -y
+          # DEBIAN_FRONTEND=noninteractive sudo apt install -y openssh-server
           mkdir -p ~/.ssh
           echo -e "${{ secrets.SSH_CERTIFICATE }}" > ~/.ssh/id_rsa
           chmod 400 ~/.ssh/id_rsa
