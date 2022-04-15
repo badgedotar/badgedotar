@@ -4,7 +4,7 @@ on:
     paths: 
      - "cardano_nodes/**"
      - ".github/workflows/cardano_nodes.yml"
-     - "./scripts/deploy-nodes.sh"
+     - "scripts/deploy-nodes.sh"
     branches:
       - main
 

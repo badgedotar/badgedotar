@@ -4,7 +4,7 @@ on:
     paths: 
      - "backend_server/**"
      - ".github/workflows/backend_server.yml"
-     - "./scripts/deploy-backend-server.sh"
+     - "scripts/deploy-backend-server.sh"
     branches:
       - main
 
