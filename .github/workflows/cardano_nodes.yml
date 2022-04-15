@@ -9,21 +9,23 @@ on:
       - main
 
 env:
-  SSH_CERTIFICATE: "${SSH_CERTIFICATE}"
+  SSH_CERTIFICATE: "${{ secrets.SSH_CERTIFICATE }}"
   DEPLOY_IP: "api.badge.ar"
 jobs:
   deploy-nodes:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - name: "Configuring environment"
+      - name: "Checkout the files"
+        uses: actions/checkout@v2
+
+      - name: "Deploy cardano nodes on server"
         run: |
           DEBIAN_FRONTEND=noninteractive sudo apt update -y
           DEBIAN_FRONTEND=noninteractive sudo apt install -y openssh-server
           mkdir -p ~/.ssh
-          echo -e "${SSH_CERTIFICATE}" > ~/.ssh/id_rsa
+          echo -e "${{ secrets.SSH_CERTIFICATE }}" > ~/.ssh/id_rsa
           chmod 400 ~/.ssh/id_rsa
           echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-          export DEPLOY_IP=$DEPLOY_IP
-      - name: "Deploy cardano nodes on server"
-        run: "scripts/deploy-nodes.sh"
+          export DEPLOY_IP=${{ env.DEPLOY_IP }}
+          ./scripts/deploy-nodes.sh
