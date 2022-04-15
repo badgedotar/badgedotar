@@ -1,0 +1,44 @@
+name: backend-server-actions-workflow
+on:
+  push:
+    paths: 
+     - "backend_server/**"
+     - ".github/workflows/backend_server.yml"
+     - "./scripts/deploy-backend-server.sh"
+    branches:
+      - main
+
+env:
+  SSH_CERTIFICATE: "${{ secrets.SSH_CERTIFICATE }}"
+  DEPLOY_IP: "api.badge.ar"
+  _APP_OPENSSL_KEY_V1: "${{ secrets._APP_OPENSSL_KEY_V1 }}"
+  _APP_LOGGING_CONFIG: "${{ secrets._APP_LOGGING_CONFIG }}"
+  _APP_DB_PASS: "${{ secrets._APP_DB_PASS }}"
+  _APP_DB_ROOT_PASS: "${{ secrets._APP_DB_ROOT_PASS }}"
+  _APP_EXECUTOR_SECRET: "${{ secrets._APP_EXECUTOR_SECRET }}"
+  DOCKERHUB_PULL_PASSWORD: "${{ secrets.DOCKERHUB_PULL_PASSWORD }}"
+
+jobs:
+  deploy-backend-server:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: "Checkout the files"
+        uses: actions/checkout@v2
+
+      - name: "Deploy backend server"
+        run: |
+          # DEBIAN_FRONTEND=noninteractive sudo apt update -y
+          # DEBIAN_FRONTEND=noninteractive sudo apt install -y openssh-server
+          mkdir -p ~/.ssh
+          echo -e "${{ secrets.SSH_CERTIFICATE }}" > ~/.ssh/id_rsa
+          chmod 400 ~/.ssh/id_rsa
+          echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+          export DEPLOY_IP=${{ env.DEPLOY_IP }}
+          export _APP_OPENSSL_KEY_V1=${{ env._APP_OPENSSL_KEY_V1 }}
+          export _APP_LOGGING_CONFIG=${{ env._APP_LOGGING_CONFIG }}
+          export _APP_DB_PASS=${{ env._APP_DB_PASS }}
+          export _APP_DB_ROOT_PASS=${{ env._APP_DB_ROOT_PASS }}
+          export _APP_EXECUTOR_SECRET=${{ env._APP_EXECUTOR_SECRET }}
+          export DOCKERHUB_PULL_PASSWORD=${{ env.DOCKERHUB_PULL_PASSWORD }}
+          ./scripts/deploy-backend-server.sh

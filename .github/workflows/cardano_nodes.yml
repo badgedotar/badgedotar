@@ -1,10 +1,10 @@
-name: docker-compose-actions-workflow
+name: cardano-nodes-actions-workflow
 on:
   push:
     paths: 
      - "cardano_nodes/**"
      - ".github/workflows/cardano_nodes.yml"
-     - ".github/workflows/scripts/deploy-nodes.sh"
+     - "./scripts/deploy-nodes.sh"
     branches:
       - main
 
