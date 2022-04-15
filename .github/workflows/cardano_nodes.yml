@@ -15,10 +15,6 @@ jobs:
   deploy-nodes:
     runs-on: ubuntu-latest
     environment: production
-    defaults:
-      run:
-        shell: bash
-        working-directory: scripts
     steps:
       - name: "Configuring environment"
         run: |
@@ -30,4 +26,4 @@ jobs:
           echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
           export DEPLOY_IP=$DEPLOY_IP
       - name: "Deploy cardano nodes on server"
-        run: "./deploy-nodes.sh"
+        run: "scripts/deploy-nodes.sh"
