@@ -2,15 +2,15 @@ import type { NextPage } from 'next';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-// import Link from '../src/Link';
 import { Button, Divider, useTheme } from '@mui/material';
 import Link from 'next/link';
+import { pageRoutes } from '@/src/routes';
 
 
 const Home: NextPage = () => {
   const theme = useTheme();
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="sm">
       <Box
         sx={{
           display: 'flex',
@@ -26,7 +26,7 @@ const Home: NextPage = () => {
         </Typography>
         <Divider sx={{marginTop: '2rem'}} />
         <Box mt={10}>
-          <Link href='/register'>
+          <Link href={pageRoutes.achievementsAddSelect}>
             <Button variant='outlined' fullWidth>Get started</Button>
           </Link>
         </Box>
