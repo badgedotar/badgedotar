@@ -1,28 +1,35 @@
-import * as React from 'react';
 import type { NextPage } from 'next';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Link from '../src/Link';
+// import Link from '../src/Link';
+import { Button, Divider, useTheme } from '@mui/material';
+import Link from 'next/link';
+
 
 const Home: NextPage = () => {
+  const theme = useTheme();
   return (
     <Container maxWidth="lg">
       <Box
         sx={{
-          my: 4,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center',
+          // alignItems: 'flex-start',
+          height: '90vh',
         }}
       >
-        <Typography variant="h4" component="h1" gutterBottom>
-          MUI v5 + Next.js with TypeScript example
+        <Typography variant="h3" component="h1" gutterBottom display='flex' flexDirection='column' alignItems='flex-start'>
+          Mint your{' '}
+          <Box bgcolor={theme.palette.primary.main} height='1em' mt={1} pb={7} boxSizing='border-box'>awards</Box>
         </Typography>
-        <Link href="/about" color="secondary">
-          Go to the about page
-        </Link>
+        <Divider sx={{marginTop: '2rem'}} />
+        <Box mt={10}>
+          <Link href='/register'>
+            <Button variant='outlined' fullWidth>Get started</Button>
+          </Link>
+        </Box>
       </Box>
     </Container>
   );
