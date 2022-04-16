@@ -10,7 +10,7 @@ import Link from 'next/link';
 const Home: NextPage = () => {
   const theme = useTheme();
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="sm">
       <Box
         sx={{
           display: 'flex',
