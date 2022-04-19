@@ -27,7 +27,7 @@ services:
       - appwrite
 
   appwrite:
-    image: appwrite/appwrite:0.13.0
+    image: appwrite/appwrite:0.13.4
     container_name: appwrite
     restart: unless-stopped
     networks:
@@ -122,7 +122,7 @@ services:
       - _APP_MAINTENANCE_RETENTION_AUDIT
 
   appwrite-realtime:
-    image: appwrite/appwrite:0.13.0
+    image: appwrite/appwrite:0.13.4
     entrypoint: realtime
     container_name: appwrite-realtime
     restart: unless-stopped
@@ -163,7 +163,7 @@ services:
       - _APP_LOGGING_CONFIG
 
   appwrite-executor:
-    image: appwrite/appwrite:0.13.0
+    image: appwrite/appwrite:0.13.4
     entrypoint: executor
     container_name: appwrite-executor
     stop_signal: SIGINT
@@ -204,7 +204,7 @@ services:
       - _APP_EXECUTOR_RUNTIME_NETWORK
 
   appwrite-worker-database:
-    image: appwrite/appwrite:0.13.0
+    image: appwrite/appwrite:0.13.4
     entrypoint: worker-database
     container_name: appwrite-worker-database
     restart: unless-stopped
@@ -229,7 +229,7 @@ services:
       - _APP_LOGGING_CONFIG
 
   appwrite-worker-builds:
-    image: appwrite/appwrite:0.13.0
+    image: appwrite/appwrite:0.13.4
     entrypoint: worker-builds
     container_name: appwrite-worker-builds
     restart: unless-stopped
@@ -255,7 +255,7 @@ services:
       - _APP_LOGGING_CONFIG
 
   appwrite-worker-audits:
-    image: appwrite/appwrite:0.13.0
+    image: appwrite/appwrite:0.13.4
     entrypoint: worker-audits
     container_name: appwrite-worker-audits
     restart: unless-stopped
@@ -280,7 +280,7 @@ services:
       - _APP_LOGGING_CONFIG
 
   appwrite-worker-webhooks:
-    image: appwrite/appwrite:0.13.0
+    image: appwrite/appwrite:0.13.4
     entrypoint: worker-webhooks
     container_name: appwrite-worker-webhooks
     restart: unless-stopped
@@ -301,7 +301,7 @@ services:
       - _APP_LOGGING_CONFIG
 
   appwrite-worker-deletes:
-    image: appwrite/appwrite:0.13.0
+    image: appwrite/appwrite:0.13.4
     entrypoint: worker-deletes
     container_name: appwrite-worker-deletes
     restart: unless-stopped
@@ -339,7 +339,7 @@ services:
       - _APP_LOGGING_CONFIG
 
   appwrite-worker-certificates:
-    image: appwrite/appwrite:0.13.0
+    image: appwrite/appwrite:0.13.4
     entrypoint: worker-certificates
     container_name: appwrite-worker-certificates
     restart: unless-stopped
@@ -369,7 +369,7 @@ services:
       - _APP_LOGGING_CONFIG
 
   appwrite-worker-functions:
-    image: appwrite/appwrite:0.13.0
+    image: appwrite/appwrite:0.13.4
     entrypoint: worker-functions
     container_name: appwrite-worker-functions
     restart: unless-stopped
@@ -398,7 +398,7 @@ services:
       - DOCKERHUB_PULL_PASSWORD
 
   appwrite-worker-mails:
-    image: appwrite/appwrite:0.13.0
+    image: appwrite/appwrite:0.13.4
     entrypoint: worker-mails
     container_name: appwrite-worker-mails
     restart: unless-stopped
@@ -425,7 +425,7 @@ services:
 
 
   appwrite-maintenance:
-    image: appwrite/appwrite:0.13.0
+    image: appwrite/appwrite:0.13.4
     entrypoint: maintenance
     container_name: appwrite-maintenance
     restart: unless-stopped
@@ -446,7 +446,7 @@ services:
       - _APP_MAINTENANCE_RETENTION_AUDIT
 
   appwrite-usage:
-    image: appwrite/appwrite:0.13.0
+    image: appwrite/appwrite:0.13.4
     entrypoint: usage
     container_name: appwrite-usage
     restart: unless-stopped
@@ -472,7 +472,7 @@ services:
       - _APP_REDIS_PASS
 
   appwrite-schedule:
-    image: appwrite/appwrite:0.13.0
+    image: appwrite/appwrite:0.13.4
     entrypoint: schedule
     container_name: appwrite-schedule
     restart: unless-stopped
