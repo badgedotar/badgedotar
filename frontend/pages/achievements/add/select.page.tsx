@@ -20,7 +20,7 @@ const Page: NextPage = () => {
   }
   const totalChecked = Object.keys(checked).filter(key => checked[key]).length;
   return (
-    <Container>
+    <Container maxWidth='md'>
       <Box display='flex' justifyContent='center' flexDirection='column'>
         <Typography variant='h5' textAlign='center' my={4}>Select achievements</Typography>
         <TextField label='Search' />
