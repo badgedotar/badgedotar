@@ -19,6 +19,7 @@ const theme = createTheme({
     },
     background: {
       default: '#170f3a',
+      paper: '#170f3a',
     },
     divider: 'rgba(255, 255, 255, 0.30)',
   },
