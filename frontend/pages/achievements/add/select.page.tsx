@@ -1,4 +1,4 @@
-import { Box, Button, ButtonBase, Checkbox, Container, Stack, TextField, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, ButtonBase, Checkbox, Container, Stack, TextField, Typography } from "@mui/material";
 import { NextPage } from "next";
 import { AchievementResume, IAchievementResume } from "../components/AchievementResume";
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
@@ -25,17 +25,28 @@ const Page: NextPage = () => {
         <Typography variant='h5' textAlign='center' my={4}>Select achievements</Typography>
         <TextField label='Search' />
       </Box>
-      <Stack spacing={0} py={4}>
-        {exampleData.map((achievement, index) => (
-          <ButtonBase sx={{display:'block'}} onClick={()=>{handleSetChecked(achievement.id)}} key={index}>
-            <Box py={2}>
-              <AchievementResume {...achievement} image={achievement.image+'?'+index}>
-                <Checkbox checked={checked[achievement.id] === true} icon={<RadioButtonUnchecked />} checkedIcon={<CheckCircleIcon />}/>
-              </AchievementResume>
-            </Box>
-          </ButtonBase>
+      <Box py={4}>
+        {exampleGamesData.map(game => (
+          <Accordion key={game.id}>
+            <AccordionSummary>
+              <Typography>{game.title}</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Stack spacing={0} py={4}>
+                {game.achievements.map((achievement, index) => (
+                  <ButtonBase sx={{display:'block'}} onClick={()=>{handleSetChecked(`${game.id}-${achievement.id}`)}} key={index}>
+                    <Box py={2}>
+                      <AchievementResume {...achievement} image={achievement.image+'?'+`${game.id}-${achievement.id}`}>
+                        <Checkbox checked={checked[`${game.id}-${achievement.id}`] === true} icon={<RadioButtonUnchecked />} checkedIcon={<CheckCircleIcon />}/>
+                      </AchievementResume>
+                    </Box>
+                  </ButtonBase>
+                ))}
+              </Stack>
+            </AccordionDetails>
+          </Accordion>
         ))}
-      </Stack>
+      </Box>
       <Button disabled={totalChecked === 0} variant='contained' fullWidth>Mint {totalChecked} <EmojiEventsIcon/></Button>
     </Container>
   )
@@ -80,4 +91,24 @@ const exampleData: IAchievementResume[] = [
     description: "Matar a todos los zombies",
     image: "https://source.unsplash.com/random",
   },
+]
+
+
+
+const exampleGamesData = [
+  {
+    id: '1',
+    title: 'CS GO',
+    achievements: exampleData
+  },
+  {
+    id: '2',
+    title: 'Sifu',
+    achievements: exampleData
+  },
+  {
+    id: '3',
+    title: 'Fortnite',
+    achievements: exampleData
+  }
 ]
