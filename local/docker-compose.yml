@@ -1,0 +1,15 @@
+version: '3'
+services:
+  testnet:
+    image: 'nessusio/cardano-node:1.30.1'
+    container_name: 'testnet'
+    ports:
+      - '3002:3001'
+    environment:
+      - 'CARDANO_NETWORK=testnet'
+    #platform: 'linux/arm64/v8'
+    volumes:
+      - './node/data:/opt/cardano/data'
+      - './node/ipc:/opt/cardano/ipc'
+    restart: always
+    command: ['run']

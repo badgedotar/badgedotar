@@ -1,0 +1,86 @@
+{
+    "projectId": "badge-ar",
+    "projectName": "Badge.ar",
+    "collections": [
+        {
+            "$id": "providers",
+            "$read": [
+                "role:member"
+            ],
+            "$write": [],
+            "name": "Providers",
+            "enabled": true,
+            "permission": "collection",
+            "attributes": [
+                {
+                    "key": "name",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "accounts",
+            "$read": [],
+            "$write": [],
+            "name": "Accounts",
+            "enabled": true,
+            "permission": "document",
+            "attributes": [
+                {
+                    "key": "provider",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "user",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "token",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "wallets",
+            "$read": [],
+            "$write": [],
+            "name": "Wallets",
+            "enabled": true,
+            "permission": "document",
+            "attributes": [
+                {
+                    "key": "user",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                }
+            ],
+            "indexes": []
+        }
+    ]
+}

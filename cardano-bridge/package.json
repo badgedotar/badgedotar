@@ -1,0 +1,22 @@
+{
+  "name": "badgedotar-cardano-bridge",
+  "version": "0.0.1",
+  "description": "Cardano - AppWrite Bridge",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:local": "nodemon src/index.js 8081",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Catriel Müller <@catrielmuller>",
+  "license": "MIT",
+  "dependencies": {
+    "cardanocli-js": "^4.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "node-appwrite": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

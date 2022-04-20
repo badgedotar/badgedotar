@@ -2,8 +2,8 @@ name: cardano-nodes-actions-workflow
 on:
   push:
     paths: 
-     - "cardano_nodes/**"
-     - ".github/workflows/cardano_nodes.yml"
+     - "cardano-nodes/**"
+     - ".github/workflows/cardano-nodes.yml"
      - "scripts/deploy-nodes.sh"
     branches:
       - main

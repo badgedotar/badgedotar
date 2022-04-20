@@ -2,8 +2,8 @@ name: backend-server-actions-workflow
 on:
   push:
     paths: 
-     - "backend_server/**"
-     - ".github/workflows/backend_server.yml"
+     - "backend-server/**"
+     - ".github/workflows/backend-server.yml"
      - "scripts/deploy-backend-server.sh"
     branches:
       - main
