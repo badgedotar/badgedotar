@@ -1,8 +1,15 @@
 const sdk = require('node-appwrite');
+const config = require('../config');
 
-const client = new sdk.Client();
-client.setEndpoint(process.env.APPWRITE_URL);
-client.setProject(process.env.APPWRITE_PROJECT);
-client.setKey(process.env.APPWRITE_KEY);
+const client = new sdk.Client()
+client.setEndpoint(config.appwrite.url)
+client.setProject(config.appwrite.project)
+client.setKey(config.appwrite.key);
 
-export const database = new sdk.Database(client);
+const database = new sdk.Database(client);
+const users = new sdk.Users(client);
+
+module.exports = {
+  database,
+  users,
+}

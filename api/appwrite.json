@@ -33,7 +33,7 @@
             "permission": "document",
             "attributes": [
                 {
-                    "key": "provider",
+                    "key": "token",
                     "type": "string",
                     "status": "available",
                     "required": true,
@@ -51,7 +51,7 @@
                     "default": null
                 },
                 {
-                    "key": "token",
+                    "key": "provider",
                     "type": "string",
                     "status": "available",
                     "required": true,
@@ -71,12 +71,22 @@
             "permission": "document",
             "attributes": [
                 {
-                    "key": "user",
+                    "key": "address",
                     "type": "string",
                     "status": "available",
                     "required": true,
                     "array": false,
                     "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "balance",
+                    "type": "integer",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "min": -9223372036854776000,
+                    "max": 9223372036854776000,
                     "default": null
                 }
             ],
