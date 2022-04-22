@@ -18,7 +18,7 @@ jobs:
       - name: Vercel Action
         uses: amondnet/vercel-action@v20.0.1
         with:
-          vercel-token: "${ secrets.VERCEL_TOKEN }"
+          vercel-token: "${{ secrets.VERCEL_TOKEN }}"
           vercel-args: '--prod' #Optional
           working-directory: frontend
           vercel-project-id: prj_fohMlx8xd57AOfLcW0glzWKihMFv #Required
