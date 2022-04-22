@@ -20,6 +20,6 @@ jobs:
         with:
           vercel-token: "${{ secrets.VERCEL_TOKEN }}"
           vercel-args: '--prod' #Optional
-          working-directory: "${{ GITHUB_WORKSPACE }}/frontend"
+          working-directory: ../../frontend
           vercel-project-id: prj_fohMlx8xd57AOfLcW0glzWKihMFv #Required
           vercel-org-id: 8TnRdKG7AlD74ccBaEmZ0sGO #Required
