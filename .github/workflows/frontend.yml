@@ -1,4 +1,4 @@
-name: cardano-nodes-actions-workflow
+name: frontend-actions-workflow
 on:
   push:
     paths: 
@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  deploy-nodes:
+  deploy-frontend:
     runs-on: ubuntu-latest
     environment: production
     steps:
@@ -19,10 +19,10 @@ jobs:
         uses: amondnet/vercel-action@v20.0.1
         with:
           vercel-token: "${ secrets.GITHUB_TOKEN }"
-          project-name: "badgedotar"
+          project-name: badgedotar
           project-description: "badge.ar frontend"
-          project-url: "vercel.com/badgedotar/frontend"
+          project-url: vercel.com/badgedotar/frontend
           vercel-args: '--prod' #Optional
-          vercel-org-id: "8TnRdKG7AlD74ccBaEmZ0sGO" #Required
-          vercel-project-id: "prj_fohMlx8xd57AOfLcW0glzWKihMFv" #Required
-          working-directory: "./frontend"
+          vercel-org-id: 8TnRdKG7AlD74ccBaEmZ0sGO #Required
+          vercel-project-id: prj_fohMlx8xd57AOfLcW0glzWKihMFv #Required
+          working-directory: frontend
