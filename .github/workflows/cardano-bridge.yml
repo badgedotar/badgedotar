@@ -1,0 +1,35 @@
+name: cardano-bridge-actions-workflow
+on:
+  push:
+    paths: 
+     - "cardano-bridge/**"
+     - ".github/workflows/cardano-bridge.yml"
+     - "scripts/deploy-bridge.sh"
+    branches:
+      - main
+
+env:
+  SSH_CERTIFICATE: "${{ secrets.SSH_CERTIFICATE }}"
+  DEPLOY_IP: "api.badge.ar"
+  APPWRITE_KEY: "${{ secrets.APPWRITE_KEY }}"
+
+jobs:
+  deploy-bridge:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: "Checkout the files"
+        uses: actions/checkout@v2
+
+      - name: "Deploy cardano bridge on server"
+        run: |
+          # MULTI-LINE COMMAND
+          # DEBIAN_FRONTEND=noninteractive sudo apt update -y
+          # DEBIAN_FRONTEND=noninteractive sudo apt install -y openssh-server
+          mkdir -p ~/.ssh
+          echo -e "${{ secrets.SSH_CERTIFICATE }}" > ~/.ssh/id_rsa
+          chmod 400 ~/.ssh/id_rsa
+          echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+          export DEPLOY_IP=${{ env.DEPLOY_IP }}
+          export APPWRITE_KEY=${{ env.APPWRITE_KEY }}
+          ./scripts/deploy-bridge.sh
