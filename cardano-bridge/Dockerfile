@@ -13,12 +13,12 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
 ENTRYPOINT ["/tini", "--"]
 
-FROM --platform=linux/arm64/v8 base AS dependencies
+FROM --platform=linux/arm64v8 base AS dependencies
 WORKDIR /app
 COPY ["package.json", "package-lock.json"] .
 RUN npm set progress=false && npm install node-appwrite && npm install
 
-FROM --platform=linux/arm64/v8 base AS release
+FROM --platform=linux/arm64v8 base AS release
 # Copy node_modules from dependencies
 COPY --from=dependencies /app/node_modules ./node_modules
 # Copy app sources
