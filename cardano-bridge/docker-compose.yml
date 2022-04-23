@@ -15,7 +15,7 @@ services:
       - CARDANO_STORE
       - CARDANO_CONFIG
     volumes:
-      - '/home/ubuntu/cardano/mainnet/ipc:${CARDANO_NODE_SOCKET_PATH}'
+      - '/home/ubuntu/cardano/testnet/ipc:${CARDANO_NODE_SOCKET_PATH}'
       - '/home/ubuntu/cardano/cardano-bridge/testnet/store:${CARDANO_STORE}'
       - '/home/ubuntu/cardano/cardano-bridge/testnet/config:${CARDANO_CONFIG}'
     restart: always
