@@ -1,4 +1,4 @@
-FROM nessusio/cardano-node:1.30.1 AS base
+FROM --platform=linux/arm64/v8 nessusio/cardano-node:1.30.1 AS base
 ENV NODE_VERSION=16.13.1
 RUN apt install -y curl
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
