@@ -9,8 +9,8 @@ services:
       - 'CARDANO_NETWORK=mainnet'
     #platform: 'linux/arm64/v8'
     volumes:
-      - '/home/ubuntu/cardano/mainnet/data:/opt/cardano/data'
-      - '/home/ubuntu/cardano/mainnet/ipc:/opt/cardano/ipc'
+      - '~/cardano/mainnet/data:/opt/cardano/data'
+      - '~/cardano/mainnet/ipc:/opt/cardano/ipc'
     restart: always
     command: ['run']
   testnet:
@@ -22,7 +22,7 @@ services:
       - 'CARDANO_NETWORK=testnet'
     #platform: 'linux/arm64/v8'
     volumes:
-      - '/home/ubuntu/cardano/testnet/data:/opt/cardano/data'
-      - '/home/ubuntu/cardano/testnet/ipc:/opt/cardano/ipc'
+      - '~/cardano/testnet/data:/opt/cardano/data'
+      - '~/cardano/testnet/ipc:/opt/cardano/ipc'
     restart: always
     command: ['run']

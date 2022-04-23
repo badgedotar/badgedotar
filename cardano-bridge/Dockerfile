@@ -7,17 +7,13 @@ RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
 RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
 RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
 ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
-# Add Tini
-#ENV TINI_VERSION v0.19.0
-#ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-#RUN chmod +x /tini
-#ENTRYPOINT ["/tini", "--"]
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 
 FROM --platform=linux/arm64v8 base AS dependencies
 WORKDIR /app
-COPY ["package.json", "package-lock.json"] .
-RUN npm set progress=false && npm install node-appwrite && npm install
+COPY ["package.json", "package-lock.json", "./"]
+RUN npm set progress=false
+RUN npm install
 
 FROM --platform=linux/arm64v8 base AS release
 # Copy node_modules from dependencies
