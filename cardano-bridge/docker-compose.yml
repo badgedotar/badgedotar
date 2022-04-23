@@ -14,7 +14,6 @@ services:
       - CARDANO_NODE_SOCKET_PATH
       - CARDANO_STORE
       - CARDANO_CONFIG
-    platform: 'linux/arm64/v8'
     volumes:
       - '/home/ubuntu/cardano/mainnet/ipc:${CARDANO_NODE_SOCKET_PATH}'
       - '/home/ubuntu/cardano/cardano-bridge/testnet/store:${CARDANO_STORE}'
