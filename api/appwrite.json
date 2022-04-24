@@ -117,6 +117,17 @@
             "events": [],
             "schedule": "",
             "timeout": 15
+        },
+        {
+            "$id": "626500b93dcb0ea03323",
+            "name": "sync-wallets",
+            "runtime": "node-16.0",
+            "path": "functions/sync-wallets",
+            "entrypoint": "src/index.js",
+            "execute": [],
+            "events": [],
+            "schedule": "*/5 * * * *",
+            "timeout": 300
         }
     ]
 }
