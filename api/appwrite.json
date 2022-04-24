@@ -106,6 +106,17 @@
             ],
             "schedule": "",
             "timeout": 60
+        },
+        {
+            "$id": "6264ee56ba3a5a49d6dd",
+            "name": "ping-bridge",
+            "runtime": "node-16.0",
+            "path": "functions/ping-bridge",
+            "entrypoint": "src/index.js",
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
         }
     ]
 }
