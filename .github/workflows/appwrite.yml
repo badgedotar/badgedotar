@@ -1,10 +1,10 @@
-name: backend-server-actions-workflow
+name: appwrite-actions-workflow
 on:
   push:
     paths: 
-     - "backend-server/**"
-     - ".github/workflows/backend-server.yml"
-     - "scripts/deploy-backend-server.sh"
+     - "appwrite/**"
+     - ".github/workflows/appwrite.yml"
+     - "scripts/deploy-appwrite.sh"
     branches:
       - main
 
@@ -20,7 +20,7 @@ env:
   _APP_SMTP_PASSWORD: "${{ secrets._APP_SMTP_PASSWORD }}"
 
 jobs:
-  deploy-backend-server:
+  deploy-appwrite:
     runs-on: ubuntu-latest
     environment: production
     steps:
@@ -44,4 +44,4 @@ jobs:
           export _APP_EXECUTOR_SECRET=${{ env._APP_EXECUTOR_SECRET }}
           export DOCKERHUB_PULL_PASSWORD=${{ env.DOCKERHUB_PULL_PASSWORD }}
           export _APP_SMTP_PASSWORD=${{ env._APP_SMTP_PASSWORD }}
-          ./scripts/deploy-backend-server.sh
+          ./scripts/deploy-appwrite.sh
