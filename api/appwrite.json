@@ -85,12 +85,27 @@
                     "status": "available",
                     "required": true,
                     "array": false,
-                    "min": -9223372036854776000,
-                    "max": 9223372036854776000,
+                    "min": 0,
+                    "max": 9007199254740991,
                     "default": null
                 }
             ],
             "indexes": []
+        }
+    ],
+    "functions": [
+        {
+            "$id": "6264df72091c7aff2863",
+            "name": "create-wallet",
+            "runtime": "node-16.0",
+            "path": "functions/create-wallet",
+            "entrypoint": "src/index.js",
+            "execute": [],
+            "events": [
+                "users.create"
+            ],
+            "schedule": "",
+            "timeout": 60
         }
     ]
 }

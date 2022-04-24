@@ -179,8 +179,6 @@ services:
       - mariadb
       - appwrite
     environment:
-      - DOCKERHUB_PULL_USERNAME
-      - DOCKERHUB_PULL_PASSWORD
       - _APP_LOGGING_PROVIDER
       - _APP_LOGGING_CONFIG
       - _APP_VERSION
@@ -394,8 +392,6 @@ services:
       - _APP_FUNCTIONS_TIMEOUT
       - _APP_EXECUTOR_SECRET
       - _APP_USAGE_STATS
-      - DOCKERHUB_PULL_USERNAME
-      - DOCKERHUB_PULL_PASSWORD
 
   appwrite-worker-mails:
     image: appwrite/appwrite:0.13.4
