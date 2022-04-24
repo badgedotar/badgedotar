@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "node-appwrite": "^5.0.0",
-    "node-fetch": "^3.2.3"
+    "node-fetch": "^2.6.7"
   }
 }

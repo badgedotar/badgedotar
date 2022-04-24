@@ -9,7 +9,10 @@ const appwrite = require('./libs/appwrite')
 app.use(cors())
 
 app.get('/', (req, res) => {
-  return res.send('Badge.ar - Cardano Bridge')
+  return res.json({
+    name: 'Badge.ar - Cardano Bridge',
+    version: '0.0.1',
+  })
 })
 
 app.get('/cardano/tip', (req, res) => {
