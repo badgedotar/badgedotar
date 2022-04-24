@@ -55,7 +55,7 @@ app.get('/sync/wallets', async (req, res) => {
   
   const results = await Promise.all(promises)
 
-  return res.json('ok')
+  return res.json({msg: 'ok'})
 })
 
 
