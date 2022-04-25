@@ -23,9 +23,9 @@ const handler = async (req, res) => {
 
   try {
     providerId = await new Promise((resolve, reject) => {
-      relyingParty.verifyAssertion(req, async (error, result) => {
+      relyingParty.verifyAssertion(req, (error, result) => {
         if (error) {
-          return reject(error.message)
+          return reject(error)
         }
         if (!result || !result.authenticated) {
           return reject("Failed to authenticate user.")
