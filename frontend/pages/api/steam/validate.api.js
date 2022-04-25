@@ -43,7 +43,7 @@ const handler = async (req, res) => {
       })
     })
   } catch (e) {
-    return res.status(500).json({ msg: e })
+    return res.status(200).json({ msg: e })
   }
 
   const accounts = await database.listDocuments('accounts', [
