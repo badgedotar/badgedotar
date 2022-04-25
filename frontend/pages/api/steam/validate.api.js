@@ -1,6 +1,5 @@
-import { users } from "../appwrite"
 import * as openid from 'openid'
-import { get } from 'axios'
+import { users } from "../appwrite"
 import { steamConfig } from './config'
 
 const handler = async (req, res) => {
