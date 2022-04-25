@@ -52,18 +52,18 @@ const handler = async (req, res) => {
   ])
 
   if (account.total) {
-    return res.status(500).json({ msg: 'Steam account already linked' })
+    return res.redirect(steamConfig.base)
   }
 
   try {
     account = await database.createDocument('accounts', 'unique()', {
       provider: 'steam',
       providerId: providerId,
-      token: '',
-      user: user.$id,
+      token: 'none',
+      user: userId,
     }, [`user:${userId}`], [])
   } catch (e) {
-    return res.status(500).json({ msg: e })
+    return res.status(200).json({ msg: e })
   }
   
   res.redirect(steamConfig.base)
