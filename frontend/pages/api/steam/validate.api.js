@@ -1,10 +1,11 @@
 import * as openid from 'openid'
-import { users } from "../appwrite"
+import { Query } from 'node-appwrite';
+import { users, database } from "../appwrite"
 import { steamConfig } from './config'
 
 const handler = async (req, res) => {
   const userId = req.query.id
-  let user, providerId
+  let user, providerId, account
 
   try {
     user = await users.get(userId)
@@ -45,7 +46,27 @@ const handler = async (req, res) => {
     return res.status(500).json({ msg: e })
   }
 
-  res.status(200).json({ providerId })
+  const accounts = await database.listDocuments('accounts', [
+    Query.equal('provider', 'steam'),
+    Query.equal('providerId', providerId),
+  ])
+
+  if (account.total) {
+    return res.status(500).json({ msg: 'Steam account already linked' })
+  }
+
+  try {
+    account = await database.createDocument('accounts', 'unique()', {
+      provider: 'steam',
+      providerId: providerId,
+      token: '',
+      user: user.$id,
+    }, [`user:${userId}`], [])
+  } catch (e) {
+    return res.status(500).json({ msg: e })
+  }
+  
+  res.redirect(steamConfig.base)
 }
 
 export default handler
