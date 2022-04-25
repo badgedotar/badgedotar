@@ -3,8 +3,6 @@ import { users } from "../appwrite"
 import { steamConfig } from './config'
 
 const handler = async (req, res) => {
-  console.log(steamConfig)
-
   const userId = req.query.id
   let user, url
 
@@ -24,7 +22,7 @@ const handler = async (req, res) => {
 
   try {
     url = await new Promise((resolve, reject) => {
-      relyingParty.authenticate(steamConfig.steam, false, (error, authUrl) => {
+      relyingParty.authenticate(steamConfig.steamUrl, false, (error, authUrl) => {
         if (error) return reject("Authentication failed: " + error)
         if (!authUrl) return reject("Authentication failed.")
         resolve(authUrl)
