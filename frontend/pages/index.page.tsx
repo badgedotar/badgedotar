@@ -26,7 +26,7 @@ const Home: NextPage = () => {
         </Typography>
         <Divider sx={{marginTop: '2rem'}} />
         <Box mt={10}>
-          <Link href={pageRoutes.achievementsAddSelect}>
+          <Link href={pageRoutes.createAnAccount}>
             <Button variant='outlined' fullWidth>Get started</Button>
           </Link>
         </Box>
