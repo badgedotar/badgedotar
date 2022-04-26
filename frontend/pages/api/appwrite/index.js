@@ -6,7 +6,7 @@ const appwriteConfig = {
   key: process.env.APPWRITE_KEY
 }
 
-const client = new sdk.Client()
+export const client = new sdk.Client()
 client.setEndpoint(appwriteConfig.url)
 client.setProject(appwriteConfig.project)
 client.setKey(appwriteConfig.key);

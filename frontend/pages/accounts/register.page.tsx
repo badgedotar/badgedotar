@@ -3,6 +3,7 @@ import * as yup from "yup";
 import { Formik, FormikHelpers, useFormik } from "formik";
 import { appwrite } from "store/global";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 interface FormValues {
   email: string;
@@ -37,11 +38,13 @@ const Page = () => {
   const router = useRouter();
 
   const  onSubmit =(
-    values: FormValues,
+    {email, password, name}: FormValues,
     actions: FormikHelpers<FormValues>
   ) => {
     actions.setSubmitting(true);
-    appwrite.account.create('unique()', values.email, values.password, values.name).then(() => {
+    axios.post('/api/accounts/register', {
+      email, password, name
+    }).then(() => {
       router.push("/");
     }).catch(error => {
       console.error(error?.message);
