@@ -1,0 +1,22 @@
+version: '3.5'
+services:
+  cardano-bridge:
+    platform: linux/arm64/v8
+    build:
+      context: .
+    container_name: 'cardano-bridge'
+    ports:
+      - '8080:8080'
+    environment:
+      - APPWRITE_URL
+      - APPWRITE_PROJECT
+      - APPWRITE_KEY
+      - CARDANO_NETWORK
+      - CARDANO_NODE_SOCKET_PATH
+      - CARDANO_STORE
+      - CARDANO_CONFIG
+    volumes:
+      - '~/cardano/testnet/ipc:${CARDANO_NODE_SOCKET_PATH}'
+      - '~/cardano/cardano-bridge/testnet/store:${CARDANO_STORE}'
+      - '~/cardano/cardano-bridge/testnet/config:${CARDANO_CONFIG}'
+    restart: always

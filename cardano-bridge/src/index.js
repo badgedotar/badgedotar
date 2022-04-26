@@ -8,7 +8,10 @@ const appwrite = require('./libs/appwrite')
 app.use(cors())
 
 app.get('/', (req, res) => {
-  return res.send('Badge.ar - Cardano Bridge')
+  return res.json({
+    name: 'Badge.ar - Cardano Bridge',
+    version: '0.0.1',
+  })
 })
 
 app.get('/cardano/tip', (req, res) => {
@@ -51,7 +54,7 @@ app.get('/sync/wallets', async (req, res) => {
   
   const results = await Promise.all(promises)
 
-  return res.json('ok')
+  return res.json({msg: 'ok'})
 })
 
 

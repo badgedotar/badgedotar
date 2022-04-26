@@ -9,7 +9,7 @@ const config = {
     dir: process.env.CARDANO_STORE,
     network: process.env.CARDANO_NETWORK,
     shelleyGenesisPath: `${process.env.CARDANO_CONFIG}/testnet-shelley-genesis.json`,
-    socketPath: process.env.CARDANO_NODE_SOCKET_PATH,
+    socketPath: `${process.env.CARDANO_NODE_SOCKET_PATH}/node.socket`,
   }
 }
 

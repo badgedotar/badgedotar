@@ -33,6 +33,24 @@
             "permission": "document",
             "attributes": [
                 {
+                    "key": "provider",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "providerId",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
                     "key": "token",
                     "type": "string",
                     "status": "available",
@@ -49,18 +67,56 @@
                     "array": false,
                     "size": 255,
                     "default": null
-                },
-                {
-                    "key": "provider",
-                    "type": "string",
-                    "status": "available",
-                    "required": true,
-                    "array": false,
-                    "size": 255,
-                    "default": null
                 }
             ],
-            "indexes": []
+            "indexes": [
+                {
+                    "key": "provider",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "provider"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                },
+                {
+                    "key": "providerId",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "providerId"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                },
+                {
+                    "key": "user",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "user"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                },
+                {
+                    "key": "unique",
+                    "type": "unique",
+                    "status": "available",
+                    "attributes": [
+                        "provider",
+                        "providerId"
+                    ],
+                    "orders": [
+                        "ASC",
+                        "ASC"
+                    ]
+                }
+            ]
         },
         {
             "$id": "wallets",
@@ -85,12 +141,405 @@
                     "status": "available",
                     "required": true,
                     "array": false,
-                    "min": -9223372036854776000,
-                    "max": 9223372036854776000,
+                    "min": 0,
+                    "max": 9007199254740991,
                     "default": null
                 }
             ],
             "indexes": []
+        },
+        {
+            "$id": "categories",
+            "$read": [
+                "role:member"
+            ],
+            "$write": [],
+            "name": "Categories",
+            "enabled": true,
+            "permission": "collection",
+            "attributes": [
+                {
+                    "key": "provider",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "providerId",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "description",
+                    "type": "string",
+                    "status": "available",
+                    "required": false,
+                    "array": false,
+                    "size": 5000,
+                    "default": null
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "provider",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "provider"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                },
+                {
+                    "key": "providerId",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "providerId"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                },
+                {
+                    "key": "unique",
+                    "type": "unique",
+                    "status": "available",
+                    "attributes": [
+                        "provider",
+                        "providerId"
+                    ],
+                    "orders": [
+                        "ASC",
+                        "ASC"
+                    ]
+                }
+            ]
+        },
+        {
+            "$id": "badges",
+            "$read": [
+                "role:member"
+            ],
+            "$write": [],
+            "name": "Badges",
+            "enabled": true,
+            "permission": "collection",
+            "attributes": [
+                {
+                    "key": "provider",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "providerId",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "category",
+                    "type": "string",
+                    "status": "available",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "description",
+                    "type": "string",
+                    "status": "available",
+                    "required": false,
+                    "array": false,
+                    "size": 5000,
+                    "default": null
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "provider",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "provider"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                },
+                {
+                    "key": "providerId",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "providerId"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                },
+                {
+                    "key": "category",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "category"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                },
+                {
+                    "key": "unique",
+                    "type": "unique",
+                    "status": "available",
+                    "attributes": [
+                        "provider",
+                        "providerId"
+                    ],
+                    "orders": [
+                        "ASC",
+                        "ASC"
+                    ]
+                }
+            ]
+        },
+        {
+            "$id": "user-badges",
+            "$read": [],
+            "$write": [],
+            "name": "User Badges",
+            "enabled": true,
+            "permission": "document",
+            "attributes": [
+                {
+                    "key": "user",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "badge",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "account",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "minted",
+                    "type": "boolean",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "default": null
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "user",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "user"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                },
+                {
+                    "key": "badge",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "badge"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                },
+                {
+                    "key": "account",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "account"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                },
+                {
+                    "key": "unique",
+                    "type": "unique",
+                    "status": "available",
+                    "attributes": [
+                        "badge",
+                        "account"
+                    ],
+                    "orders": [
+                        "ASC",
+                        "ASC"
+                    ]
+                }
+            ]
+        },
+        {
+            "$id": "orders",
+            "$read": [],
+            "$write": [],
+            "name": "Orders",
+            "enabled": true,
+            "permission": "document",
+            "attributes": [
+                {
+                    "key": "user",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "userBadges",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": true,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "minted",
+                    "type": "boolean",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "default": null
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "user",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "user"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                },
+                {
+                    "key": "minted",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "minted"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                },
+                {
+                    "key": "user_minted",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "user",
+                        "minted"
+                    ],
+                    "orders": [
+                        "ASC",
+                        "ASC"
+                    ]
+                }
+            ]
+        }
+    ],
+    "functions": [
+        {
+            "$id": "6264df72091c7aff2863",
+            "name": "create-wallet",
+            "runtime": "node-16.0",
+            "path": "functions/create-wallet",
+            "entrypoint": "src/index.js",
+            "execute": [],
+            "events": [
+                "users.create"
+            ],
+            "schedule": "",
+            "timeout": 60
+        },
+        {
+            "$id": "6264ee56ba3a5a49d6dd",
+            "name": "ping-bridge",
+            "runtime": "node-16.0",
+            "path": "functions/ping-bridge",
+            "entrypoint": "src/index.js",
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
+        },
+        {
+            "$id": "626500b93dcb0ea03323",
+            "name": "sync-wallets",
+            "runtime": "node-16.0",
+            "path": "functions/sync-wallets",
+            "entrypoint": "src/index.js",
+            "execute": [],
+            "events": [],
+            "schedule": "* * * * *",
+            "timeout": 300
         }
     ]
 }
