@@ -67,6 +67,15 @@
                     "array": false,
                     "size": 255,
                     "default": null
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "status": "available",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null
                 }
             ],
             "indexes": [
@@ -115,6 +124,19 @@
                         "ASC",
                         "ASC"
                     ]
+                },
+                {
+                    "key": "user_provider",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "provider",
+                        "user"
+                    ],
+                    "orders": [
+                        "ASC",
+                        "ASC"
+                    ]
                 }
             ]
         },
@@ -149,12 +171,12 @@
             "indexes": []
         },
         {
-            "$id": "categories",
+            "$id": "generic-categories",
             "$read": [
                 "role:member"
             ],
             "$write": [],
-            "name": "Categories",
+            "name": "Generic Categories",
             "enabled": true,
             "permission": "collection",
             "attributes": [
@@ -234,12 +256,12 @@
             ]
         },
         {
-            "$id": "badges",
+            "$id": "generic-badges",
             "$read": [
                 "role:member"
             ],
             "$write": [],
-            "name": "Badges",
+            "name": "Generic Badges",
             "enabled": true,
             "permission": "collection",
             "attributes": [
@@ -329,9 +351,12 @@
                     "status": "available",
                     "attributes": [
                         "provider",
-                        "providerId"
+                        "providerId",
+                        "category"
                     ],
                     "orders": [
+                        "ASC",
+                        "ASC",
                         "ASC",
                         "ASC"
                     ]
@@ -540,6 +565,17 @@
             "events": [],
             "schedule": "* * * * *",
             "timeout": 300
+        },
+        {
+            "$id": "626611e29cfabd9b6f4c",
+            "name": "sync-steam",
+            "runtime": "node-16.0",
+            "path": "functions/sync-steam",
+            "entrypoint": "src/index.js",
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
         }
     ]
 }
