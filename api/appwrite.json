@@ -171,12 +171,12 @@
             "indexes": []
         },
         {
-            "$id": "generic-categories",
+            "$id": "categories",
             "$read": [
                 "role:member"
             ],
             "$write": [],
-            "name": "Generic Categories",
+            "name": "Categories",
             "enabled": true,
             "permission": "collection",
             "attributes": [
@@ -256,12 +256,12 @@
             ]
         },
         {
-            "$id": "generic-badges",
+            "$id": "badges",
             "$read": [
                 "role:member"
             ],
             "$write": [],
-            "name": "Generic Badges",
+            "name": "Badges",
             "enabled": true,
             "permission": "collection",
             "attributes": [
