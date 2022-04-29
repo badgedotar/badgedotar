@@ -10,7 +10,7 @@ app.use(cors())
 app.get('/', (req, res) => {
   return res.json({
     name: 'Badge.ar - Cardano Bridge',
-    version: '0.0.1',
+    version: '0.0.2',
   })
 })
 
