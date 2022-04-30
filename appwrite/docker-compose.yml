@@ -166,6 +166,7 @@ services:
     image: appwrite/appwrite:0.13.4
     entrypoint: executor
     container_name: appwrite-executor
+    restart: unless-stopped
     stop_signal: SIGINT
     networks:
       appwrite:
