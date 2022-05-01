@@ -1,16 +1,29 @@
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, ButtonBase, Checkbox, Container, Stack, TextField, Typography } from "@mui/material";
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import { AchievementResume, IAchievementResume } from "../components/AchievementResume";
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import { RadioButtonUnchecked } from "@mui/icons-material";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useState } from "react";
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  // TODO check if user is logged in and fetch games
+  return {
+    props: {
+      games: exampleGamesData
+    }
+  }
+}
+
 interface ICheckedState {
   [key: string]: boolean;
 }
 
-const Page: NextPage = () => {
+interface PageProps {
+  games: IGame[];
+}
+
+const Page: NextPage<PageProps> = ({ games }) => {
   const [ checked, setChecked ] = useState<ICheckedState>({});
   const handleSetChecked = (id: string) => {
     setChecked({
@@ -26,7 +39,7 @@ const Page: NextPage = () => {
         <TextField label='Search' />
       </Box>
       <Box py={4}>
-        {exampleGamesData.map(game => (
+        {games.map(game => (
           <Accordion key={game.id}>
             <AccordionSummary>
               <Typography>{game.title}</Typography>
@@ -93,7 +106,11 @@ const exampleData: IAchievementResume[] = [
   },
 ]
 
-
+interface IGame {
+  id: string;
+  title: string;
+  achievements: IAchievementResume[];
+}
 
 const exampleGamesData = [
   {
