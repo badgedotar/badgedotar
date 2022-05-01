@@ -5,10 +5,17 @@ import Box from '@mui/material/Box';
 import { Button, Divider, Stack, useTheme } from '@mui/material';
 import Link from 'next/link';
 import { pageRoutes } from '@/src/routes';
+import useUser from '@/src/hooks/useUser';
 
 
 const Home: NextPage = () => {
+  const { loading } = useUser({'redirectIfFound': pageRoutes.profile});
   const theme = useTheme();
+
+  if(loading) {
+    return <div>Loading...</div>
+  }
+  
   return (
     <Container maxWidth="sm">
       <Box

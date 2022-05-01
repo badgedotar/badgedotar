@@ -10,11 +10,14 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import axios from "axios";
 import { FormikHelpers, useFormik } from "formik";
 import { useRouter } from "next/router";
 import background from './assets/tunnel.jpg';
 import Image from "next/image";
+import { useRecoilState } from "recoil";
+import { appwrite, userState } from "store/global";
+import { User } from "store/types";
+import useUser from "@/src/hooks/useUser";
 
 interface FormValues {
   email: string;
@@ -33,6 +36,8 @@ const validationSchema = yup.object({
 });
 
 const Page = () => {
+  const {  setUser, loading } = useUser({'redirectIfFound': pageRoutes.home});
+
   const initialValues: FormValues = {
     email: "",
     password: "",
@@ -45,12 +50,11 @@ const Page = () => {
     actions: FormikHelpers<FormValues>
   ) => {
     actions.setSubmitting(true);
-    axios
-      .post("/api/accounts/login", {
-        email,
-        password,
-      })
-      .then(() => {
+    appwrite.account
+    .createSession(email, password)
+      .then((data) => {
+        console.log(data)
+        setUser(data as any as User);
         router.push(pageRoutes.achievementsAddSelect);
       })
       .catch((error) => {
@@ -64,6 +68,10 @@ const Page = () => {
     onSubmit,
     validationSchema,
   });
+
+  if(loading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <Box minHeight="90vh" display="flex" alignItems="center" py={6}>
@@ -94,7 +102,7 @@ const Page = () => {
                   placeholder="password"
                   type="password"
                   name='password'
-                  value={formik.values.email}
+                  value={formik.values.password}
                   onChange={formik.handleChange}
                   error={
                     formik.touched.password && Boolean(formik.errors.password)

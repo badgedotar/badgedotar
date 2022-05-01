@@ -6,4 +6,5 @@ export const pageRoutes = {
   login: '/accounts/login',
   createAnAccount: '/accounts/register',
   confirmAccount: '/accounts/confirm',
+  profile: '/profile'
 }

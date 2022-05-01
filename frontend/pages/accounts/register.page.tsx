@@ -15,6 +15,7 @@ import { pageRoutes } from "@/src/routes";
 import Link from "@/src/Link";
 import background from './assets/dice.jpg';
 import Image from "next/image";
+import { appwrite } from "store/global";
 
 interface FormValues {
   email: string;
@@ -53,19 +54,25 @@ const Page = () => {
     actions: FormikHelpers<FormValues>
   ) => {
     actions.setSubmitting(true);
-    axios
-      .post("/api/accounts/register", {
-        email,
-        password,
-        name,
-      })
-      .then(() => {
-        router.push(pageRoutes.confirmAccount);
-      })
-      .catch((error) => {
-        console.error(error?.message);
-        actions.setSubmitting(false);
-      });
+    appwrite.account.create('unique()', email, password, name).then(() => {
+      router.push(pageRoutes.confirmAccount);
+    }).catch((error) => {
+      console.error(error?.message);
+      actions.setSubmitting(false);
+    });
+    // axios
+    //   .post("/api/accounts/register", {
+    //     email,
+    //     password,
+    //     name,
+    //   })
+    //   .then(() => {
+    //     router.push(pageRoutes.confirmAccount);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error?.message);
+    //     actions.setSubmitting(false);
+    //   });
   };
 
   const formik = useFormik({
