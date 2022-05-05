@@ -6,12 +6,12 @@ import { User } from "store/types";
 import { AppwriteException } from "appwrite";
 
 
-interface useUserParams {
+export interface useUserParams {
   redirectTo?: string;
   redirectIfFound?: string;
 }
 
-interface useUserResponse {
+export interface useUserResponse {
   user: User;
   loading: boolean;
   setUser: SetterOrUpdater<User>;
@@ -26,7 +26,7 @@ export default function useUser({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (user) {
+    if (user !== null) {
       if (redirectIfFound) {
         Router.push(redirectIfFound);
       }
@@ -49,21 +49,6 @@ export default function useUser({
     }
     fetchData();
   }, [user])
-
-  // useEffect(() => {
-  //   // if no redirect needed, just return (example: already on /dashboard)
-  //   // if user data not yet there (fetch in progress, logged in or not) then don't do anything yet
-  //   if (!redirectTo || !user) return;
-
-  //   if (
-  //     // If redirectTo is set, redirect if the user was not found.
-  //     (redirectTo && !redirectIfFound && !user?.isLoggedIn) ||
-  //     // If redirectIfFound is also set, redirect if the user was found
-  //     (redirectIfFound && user?.isLoggedIn)
-  //   ) {
-  //     Router.push(redirectTo);
-  //   }
-  // }, [user, redirectIfFound, redirectTo]);
 
   return { user, setUser, loading } as useUserResponse;
 }
