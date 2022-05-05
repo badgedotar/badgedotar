@@ -82,7 +82,7 @@ const Page = () => {
   });
 
   return (
-    <Box minHeight="90vh" display="flex" alignItems="center" py={6}>
+    <Box minHeight="90vh" display="flex" alignItems="center" py={6} position='relative'>
       <Image src={background} layout='fill' objectFit="cover" style={{opacity: 0.1}} />
       <Container maxWidth="sm" sx={{position:'relative'}}>
         <Typography variant="h3" mb={2}>

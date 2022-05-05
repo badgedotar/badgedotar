@@ -1,10 +1,12 @@
 import type { Appwrite } from "appwrite";
 
-type User = {
+type UserLogged = {
     $id: string;
     email: string;
     name: string;
-} | null;
+}
+
+type User = UserLogged | null;
 
 type State = {
     user?: User;
@@ -13,5 +15,6 @@ type State = {
 
 export type {
     User,
+    UserLogged,
     State
 }

@@ -52,10 +52,8 @@ const Page = () => {
     actions.setSubmitting(true);
     appwrite.account
     .createSession(email, password)
-      .then((data) => {
-        console.log(data)
-        setUser(data as any as User);
-        router.push(pageRoutes.achievementsAddSelect);
+      .then(() => {
+        router.push(pageRoutes.home);
       })
       .catch((error) => {
         console.error(error?.message);
@@ -74,7 +72,7 @@ const Page = () => {
   }
 
   return (
-    <Box minHeight="90vh" display="flex" alignItems="center" py={6}>
+    <Box minHeight="90vh" display="flex" alignItems="center" py={6} position='relative'>
       <Image src={background} layout='fill' objectFit="cover" style={{opacity: 0.2}} />
       <Container maxWidth="sm" sx={{position:'relative'}}>
         <Typography variant="h3" mb={2}>

@@ -11,6 +11,7 @@ const Page = () => {
       alignItems="center"
       textAlign="center"
       py={6}
+      position='relative'
     >
       <Image
         src={background}
