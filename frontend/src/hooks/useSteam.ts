@@ -15,14 +15,18 @@ interface SteamAccount {
 
 export default function useSteam(user?: User | null) {
   const [steamAccounts, setSteamAccounts] = useState<SteamAccount[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
-    if(!user) {return;}
+    if(!user) {
+      setIsLoading(false);
+      return;
+    }
     appwrite.database.listDocuments('accounts', [
       Query.equal('user', user.$id)
     ]).then(response => {
-      
       setSteamAccounts(response.documents as any as SteamAccount[])
+      setIsLoading(false);
     })
   }, [user])
-  return {steamAccounts}
+  return {steamAccounts, isLoading}
 }
