@@ -56,13 +56,13 @@ export const UserMenu = ({ user, setUser }: UserMenuProps) => {
           Profile
         </NavOption>
         <NavOption href={pageRoutes.achievementsAddSelect}>
-          Achievements
+          My achievements
         </NavOption>
         <NavOption href={pageRoutes.achievementsAddSelect}>
-          Mint
+          Mint new achievements
         </NavOption>
         <NavOption href={pageRoutes.achievementsAddSelect}>
-          Wallet
+          My wallet
         </NavOption>
         <NavOption onClick={handleLogOut}>
           Log out

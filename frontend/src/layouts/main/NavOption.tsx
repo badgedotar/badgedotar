@@ -10,18 +10,18 @@ export const NavOption = ({ href, children, ...props }: React.PropsWithChildren<
   const theme = useTheme()
   if(!href) {
     return (
-      <MenuItem sx={{cursor: 'pointer', ':hover': { color: theme.palette.primary.light }}}>
-        <Typography variant='body2' {...props}>{children}</Typography>
+      <MenuItem {...props} sx={{cursor: 'pointer', ':hover': { color: theme.palette.primary.light }}}>
+        <Typography variant='body2' >{children}</Typography>
       </MenuItem>
     )
   }
   return (
-    <MenuItem sx={{cursor: 'pointer', ':hover': { color: theme.palette.primary.light }}}>
-      <Link href={href}>
-        <Typography variant='body2' {...props}>
+    <Link href={href}>
+      <MenuItem {...props} sx={{cursor: 'pointer', ':hover': { color: theme.palette.primary.light }}}>
+        <Typography variant='body2' >
           {children}
         </Typography>
-      </Link>
-    </MenuItem>
+      </MenuItem>
+    </Link>
   )
 }

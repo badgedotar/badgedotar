@@ -1,7 +1,7 @@
 import { Query } from "appwrite";
 import { useEffect, useState } from "react";
 import { appwrite } from "store/global";
-import { User } from "store/types";
+import { UserLogged } from "store/types";
 
 interface SteamAccount {
   $collection: "accounts"
@@ -13,7 +13,7 @@ interface SteamAccount {
   user: string
 }
 
-export default function useSteam(user?: User | null) {
+export default function useSteam(user: UserLogged) {
   const [steamAccounts, setSteamAccounts] = useState<SteamAccount[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
