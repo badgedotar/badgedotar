@@ -18,7 +18,12 @@ export const useWallet = () => {
     setLoading(true);
     appwrite.database.listDocuments<WalletDocument>('wallets').then( (walletsCollection) => {
       if(walletsCollection.documents.length > 0) {
-        setWallet(walletsCollection.documents[0]);
+        const walletToSet = walletsCollection.documents[0];
+
+        setWallet({
+          ...walletToSet,
+          balance: walletToSet.balance / 1000000
+        });
       }
       setLoading(false)
     }).catch((err) => {

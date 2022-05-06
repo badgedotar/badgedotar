@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { appwrite } from "store/global";
 import { NavOption } from "./NavOption";
+import MenuIcon from '@mui/icons-material/Menu'
 
 interface UserMenuProps {
   user: any;
@@ -40,7 +41,7 @@ export const UserMenu = ({ user, setUser }: UserMenuProps) => {
         <Avatar
           sx={{backgroundColor: theme.palette.primary.light, cursor:'pointer'}}
         >
-          {user.name.charAt(0).toUpperCase()}
+          <MenuIcon />
         </Avatar>
       </IconButton>
       <Menu
@@ -55,13 +56,13 @@ export const UserMenu = ({ user, setUser }: UserMenuProps) => {
         <NavOption href={pageRoutes.profile}>
           Profile
         </NavOption>
-        <NavOption href={pageRoutes.achievementsAddSelect}>
+        <NavOption href={pageRoutes.myAchievements}>
           My achievements
         </NavOption>
         <NavOption href={pageRoutes.achievementsAddSelect}>
           Mint new achievements
         </NavOption>
-        <NavOption href={pageRoutes.achievementsAddSelect}>
+        <NavOption href={pageRoutes.wallet}>
           My wallet
         </NavOption>
         <NavOption onClick={handleLogOut}>

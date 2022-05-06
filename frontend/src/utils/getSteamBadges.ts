@@ -4,6 +4,9 @@ import { appwrite } from "store/global"
 
 export interface getSteamBadgesParams {
   userId: string
+  limit?: number
+  offset?: number
+  minted?: boolean
 }
 
 interface UserBadgeDocument extends Models.Document {
@@ -49,23 +52,32 @@ export interface UserSteamBadges {
   categories: ICategories
 }
 
-export const getSteamBadgesAsync = async ({userId}: getSteamBadgesParams): Promise<UserSteamBadges> => {
+export const getSteamBadgesAsync = async ({userId, limit = 100, offset, minted}: getSteamBadgesParams): Promise<UserSteamBadges> => {
   
-  const {documents: userBadgesDocuments} =  await appwrite.database.listDocuments<UserBadgeDocument>('user-badges', [
-    Query.equal('account', userId)
-  ], 100)
+  const userBadgesQuery = []
+
+  if(typeof minted !== 'undefined') {
+    userBadgesQuery.push(Query.equal('minted', minted))
+  }
+
+  const {documents: userBadgesDocuments} =  await appwrite.database.listDocuments<UserBadgeDocument>(
+    'user-badges', 
+    userBadgesQuery,
+    limit,
+    offset
+  )
 
   const badgesIds = userBadgesDocuments.filter(badge => !(badge.minted)).map(badge => badge.badge)
 
   const {documents: badgesDocuments} =  await appwrite.database.listDocuments<BadgeDocument>('badges', [
     Query.equal('$id', badgesIds),
-  ], 100)
+  ], limit, offset)
 
   const categoriesIds = badgesDocuments.map(badge => badge.category)
 
   const {documents: categoriesDocuments} =  await appwrite.database.listDocuments<CategoryDocument>('categories', [
     Query.equal('$id', categoriesIds),
-  ], 100)
+  ], limit, offset)
 
   // badges
 

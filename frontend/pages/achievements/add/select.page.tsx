@@ -55,7 +55,8 @@ const Page: NextPage<PageProps> = ({ user }) => {
       return;
     }
     getSteamBadges({
-      userId: steamAccounts[0].$id
+      userId: steamAccounts[0].$id,
+      minted: false
     }).then( (badgesResponse) => {
       setUserBadges( (curr) => ({...curr, ...(badgesResponse.userBadges)}) )
       setCategories( (curr) => ({...curr, ...(badgesResponse.categories)}) )
