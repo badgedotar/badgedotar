@@ -8,4 +8,5 @@ export const pageRoutes = {
   confirmAccount: '/accounts/confirm',
   profile: '/profile',
   wallet: '/wallet',
+  about: '/about',
 }

@@ -1,0 +1,24 @@
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import TokenIcon from '@mui/icons-material/Token';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+
+#### What is Badge.Ar?
+BadgeAr is a place where you can transform your awards, trophies, and badges into a digital token (NFT).
+
+Currently, we support minting [Steam](https://store.steampowered.com/) achievements,
+meaning that you can create NFTs from your gaming sessions.
+
+<Stepper orientation="vertical">
+  <Step active={true}>
+    <StepLabel StepIconComponent={SportsEsportsIcon}>Play your games and earn achievements.</StepLabel>
+  </Step>
+  <Step active={true}>
+    <StepLabel StepIconComponent={TokenIcon}>Mint them into NFTs.</StepLabel>
+  </Step>
+  <Step active={true}>
+    <StepLabel StepIconComponent={AccountBalanceWalletIcon}>Widraw your tokens into a wallet.</StepLabel>
+  </Step>
+</Stepper>

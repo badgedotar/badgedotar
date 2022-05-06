@@ -6,7 +6,7 @@ import { Button, Divider, Stack, useTheme } from '@mui/material';
 import Link from 'next/link';
 import { pageRoutes } from '@/src/routes';
 import useUser from '@/src/hooks/useUser';
-
+import WhatIsBadgeAr from './components/WhatIsBadgeAr.mdx';
 
 const Home: NextPage = () => {
   const { loading } = useUser({'redirectIfFound': pageRoutes.profile});
@@ -19,6 +19,7 @@ const Home: NextPage = () => {
   return (
     <Container maxWidth="sm">
       <Box
+        py={8}
         sx={{
           display: 'flex',
           flexDirection: 'column',
@@ -26,12 +27,18 @@ const Home: NextPage = () => {
           minHeight: '90vh',
         }}
       >
-        <Typography variant="h3" component="h1" gutterBottom display='flex' flexDirection='column' alignItems='flex-start'>
-          Mint your{' '}
-          <Box bgcolor={theme.palette.primary.main} height='1em' mt={1} pb={7} boxSizing='border-box'>awards</Box>
-        </Typography>
-        <Divider sx={{marginTop: '2rem'}} />
-        <Stack spacing={4} mt={10}>
+        <Stack spacing={4}>
+          <Typography variant="h3" component="h1" gutterBottom display='flex' flexDirection='column' alignItems='flex-start'>
+            Mint your{' '}
+            <Box bgcolor={theme.palette.primary.main} height='1em' mt={1} pb={7} boxSizing='border-box'>awards</Box>
+          </Typography>
+          <Divider/>
+          <WhatIsBadgeAr />
+          <Link href={pageRoutes.about}>
+            <Button variant='text' fullWidth>Read more</Button>
+          </Link>
+          <Divider/>
+          <Typography variant="h5" component="h4" textAlign="center">Ready to mint?</Typography>
           <Link href={pageRoutes.createAnAccount}>
             <Button variant='outlined' fullWidth>Get started</Button>
           </Link>

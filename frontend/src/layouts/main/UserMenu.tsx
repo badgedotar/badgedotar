@@ -65,6 +65,9 @@ export const UserMenu = ({ user, setUser }: UserMenuProps) => {
         <NavOption href={pageRoutes.wallet}>
           My wallet
         </NavOption>
+        <NavOption href={pageRoutes.about}>
+          About
+        </NavOption>
         <NavOption onClick={handleLogOut}>
           Log out
         </NavOption>
