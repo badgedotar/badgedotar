@@ -1,4 +1,6 @@
+import { IsLoading } from "@/src/components/IsLoading"
 import useIsMounted from "@/src/hooks/useIsMounted"
+import { useWallet } from "@/src/hooks/useWallet"
 import { IUserBadge } from "@/src/utils/getSteamBadges"
 import { CopyAllOutlined, EmojiEventsTwoTone } from "@mui/icons-material"
 import { Box, Button, Card, Container, Divider, Stack, TextField, Tooltip, Typography } from "@mui/material"
@@ -26,20 +28,12 @@ interface HandlePaymentProps {
 }
 
 export const HandlePayment = ({ userBadges }: HandlePaymentProps) => {
-  const basePrice = 2
-  const pricePerBadge = 0.5
-  const ammountInWallet = 4
-
-  const totalToPay = basePrice + (pricePerBadge * userBadges.length)
-  const pendingToAdd: number = +(totalToPay - ammountInWallet).toFixed(2);
-  const userCanPay: boolean = pendingToAdd <= 0;
-  const userWallet = '14128312yu3138921ahdjksalhdsjakldsahjkladhjsaklds';
-
   const isMounted = useIsMounted()
+  const {wallet, loading: walletLoading, reload: reloadWallet} = useWallet()
 
   const [copiedMessage, setCopiedMessage] = useState('Copy to clipboard')
   const copyToClipboard = () => {
-    copy(userWallet)
+    copy(wallet?.address || '')
     setCopiedMessage('Copied!')
     setTimeout(() => {
       if (isMounted()) {
@@ -47,15 +41,30 @@ export const HandlePayment = ({ userBadges }: HandlePaymentProps) => {
       }
     }, 2000)
   }
+
+  const basePrice = 2
+  const pricePerBadge = 0.5
+  const ammountInWallet = wallet?.balance || 0
+
+  const totalToPay = basePrice + (pricePerBadge * userBadges.length);
+  const pendingToAdd: number = +(totalToPay - ammountInWallet).toFixed(2);
+  const userCanPay: boolean = pendingToAdd <= 0;
+
+  if(walletLoading) {
+    return ( <IsLoading /> )
+  }
+  if(wallet === null) {
+    return ( <IsLoading /> )
+  }
   return (
     <Stack spacing={4}>
       {userCanPay ? 
         <Stack spacing={4}>
           <Typography>Press pay to mint your achievements using ADA from your wallet.</Typography>
-          <Stack direction='row' spacing={4}>
+          <Stack direction='column' spacing={4}>
             <AmountDisplay label='Your wallet:' total={ammountInWallet} />
             <AmountDisplay label='Total to pay:' total={totalToPay} />
-            <AmountDisplay label='To mint:' total={userBadges.length} unit={<EmojiEventsTwoTone fontSize="large" />} />
+            <AmountDisplay label='You will mint:' total={userBadges.length} unit={<EmojiEventsTwoTone fontSize="large" />} />
           </Stack>
           <Divider />
           <Button variant='contained'>Pay</Button>
@@ -76,11 +85,12 @@ export const HandlePayment = ({ userBadges }: HandlePaymentProps) => {
             <Stack p={2} spacing={2}>
               <AmountDisplay label='Amount to transfer:' total={pendingToAdd} />
               <Stack direction='row' spacing={{xs: 2, sm: 4}}>
-                <TextField label='Wallet address' sx={{flexGrow: 1}} value={userWallet} />
+                <TextField label='Wallet address' sx={{flexGrow: 1}} value={wallet.address} />
                 <Tooltip title={copiedMessage}>
                   <Button onClick={copyToClipboard} variant='contained'><CopyAllOutlined/></Button>
                 </Tooltip>
               </Stack>
+              <Button onClick={reloadWallet}>Reload wallet</Button>
             </Stack>
           </Card>
         </Stack>
