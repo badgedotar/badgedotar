@@ -18,10 +18,6 @@ const Page: NextPage<PageProps> = ({ user }) => {
   const [userBadges, setUserBadges] = useState<UserSteamBadges['userBadges']>({})
   const [categories, setCategories] = useState<UserSteamBadges['categories']>({})
   const [loadingBadges, setLoadingBadges] = useState(true)
-  const [isPaying , setIsPaying] = useState(false)
-  const togglePayment = () => {
-    setIsPaying(!isPaying)
-  }
 
   useEffect(() => {
     setLoadingBadges(true)
