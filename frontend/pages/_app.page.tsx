@@ -1,3 +1,4 @@
+import { MDXProvider } from '@mdx-js/react'
 import Head from "next/head";
 import { AppProps } from "next/app";
 import { ThemeProvider } from "@mui/material/styles";
@@ -7,6 +8,7 @@ import theme from "../src/theme";
 import createEmotionCache from "../src/createEmotionCache";
 import { RecoilRoot } from "recoil";
 import { MainLayout } from "@/src/layouts/main/MainLayout";
+import { mdxComponents } from '@/src/utils/markdownComponents';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -28,7 +30,9 @@ export default function MyApp(props: MyAppProps) {
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <LayoutComponent>
-            <Component {...pageProps} />
+            <MDXProvider components={mdxComponents}>
+              <Component {...pageProps} />
+            </MDXProvider>
           </LayoutComponent>
         </ThemeProvider>
       </CacheProvider>
