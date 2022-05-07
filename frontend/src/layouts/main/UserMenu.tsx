@@ -57,13 +57,13 @@ export const UserMenu = ({ user, setUser }: UserMenuProps) => {
           Profile
         </NavOption>
         <NavOption href={pageRoutes.myAchievements}>
-          My achievements
-        </NavOption>
-        <NavOption href={pageRoutes.achievementsAddSelect}>
-          Mint new achievements
+          My NFTs
         </NavOption>
         <NavOption href={pageRoutes.wallet}>
           My wallet
+        </NavOption>
+        <NavOption href={pageRoutes.achievementsAddSelect}>
+          Mint new achievements
         </NavOption>
         <NavOption href={pageRoutes.about}>
           About

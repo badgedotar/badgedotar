@@ -3,6 +3,7 @@ import useSteam from "@/src/hooks/useSteam"
 import { pageRoutes } from "@/src/routes"
 import { getSteamBadges, UserSteamBadges } from "@/src/utils/getSteamBadges"
 import { withUser } from "@/src/utils/withUser"
+import { TokenOutlined } from "@mui/icons-material"
 import { Box, ButtonBase, Container, Stack, Typography } from "@mui/material"
 import { NextPage } from "next"
 import { useEffect, useState } from "react"
@@ -45,7 +46,10 @@ const Page: NextPage<PageProps> = ({ user }) => {
     <Box py={4}>
       <Container>
         <Stack spacing={4}>
-          <Typography variant='h4'>Achievements</Typography>
+          <Stack direction='row' alignItems={'center'} spacing={2}>
+            <TokenOutlined fontSize='large' />
+            <Typography variant='h4' pb={0.5}>Your NFTs </Typography>
+          </Stack>
           <Box pb={10}>
           <Stack spacing={0}>
               {Object.values(userBadges).map((userBadge) => (
