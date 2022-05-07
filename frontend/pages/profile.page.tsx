@@ -1,23 +1,16 @@
 import Box from '@mui/material/Box';
 import { pageRoutes } from '@/src/routes';
 import useSteam from '@/src/hooks/useSteam';
-import { Button, Card, BoxProps, Container, Stack, Typography, SxProps } from '@mui/material';
+import { Button, Card, Container, Stack, Typography } from '@mui/material';
 import Link from 'next/link';
 import { syncGames } from '@/src/utils/syncGames';
-import { getBadges } from '@/src/utils/getBadges';
 import { withUser } from '@/src/utils/withUser';
 import { UserLogged } from 'store/types';
-import React from 'react';
 import { AccountBalanceWallet, Add, Token } from '@mui/icons-material';
+import { CardOption } from '@/src/components/CardOption';
 
 const Page = ({ user }: {user: UserLogged}) => {
   const { steamAccounts } = useSteam(user)
-
-  const handleLogBadges = () => {
-    getBadges(user.$id).then(badges => {
-      console.log({badges});
-    })
-  }
 
   const handleSync = () => {
     if(steamAccounts.length) {
@@ -76,33 +69,3 @@ export default withUser(Page, {
   params: {'redirectTo': pageRoutes.login}
 })
 
-const buttonOptionsStyles: SxProps = {
-  height: '100%',
-  width: '100%',
-  minHeight: '130px',
-  minWidth: '130px',
-}
-
-interface CardOptionProps extends BoxProps {
-  href: string
-  icon?: any
-  disabled?: boolean
-}
-
-const CardOption = ({ children, icon, href, disabled, ...props }: React.PropsWithChildren<CardOptionProps>) => {
-  const IconComponent = icon ? icon : React.Fragment
-  return (
-    <Box {...props}>
-      <Link href={href}>
-        <Button disabled={disabled} sx={buttonOptionsStyles} variant='contained' color='secondary'>
-          <Stack p={0} alignItems='center' spacing={1}>
-            <IconComponent sx={{fontSize: '50px', marginTop: '10px'}} />
-            <Typography variant='button'>
-              {children}
-            </Typography>
-          </Stack>
-        </Button>
-      </Link>
-    </Box>
-  )
-}
