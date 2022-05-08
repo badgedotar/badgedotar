@@ -1,7 +1,7 @@
 # Badge.ar
 <a href="https://www.badge.ar"><img src="./Bagedlogo.svg" alt="Bagedlogo" width="50"/></a>
 
-<img src="./wallpaper1.jpg" alt="wallpaper1" width="50"/>
+<img src="./wallpaper1.jpg" alt="wallpaper1"/>
 
 ### Overview of My Submission
 
