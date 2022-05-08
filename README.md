@@ -1,5 +1,6 @@
 # badgear
 Badge Ar
+![alt text](./wallpaper1.jpg)
 
 ### Overview of My Submission
 
