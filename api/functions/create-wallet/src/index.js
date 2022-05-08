@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 const bridgeApi = 'http://api.badge.ar:8080';
 
 module.exports = async function (req, res) {
-  if (process.env.APPWRITE_FUNCTION_EVENT !== "users.create") {
+  if (process.env.APPWRITE_FUNCTION_EVENT !== "users.create" && process.env.APPWRITE_FUNCTION_EVENT !== "account.create") {
     return res.json("This is only for new users");
   }
 

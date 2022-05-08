@@ -539,7 +539,8 @@
             "entrypoint": "src/index.js",
             "execute": [],
             "events": [
-                "users.create"
+                "users.create",
+                "account.create"
             ],
             "schedule": "",
             "timeout": 60
@@ -572,10 +573,12 @@
             "runtime": "node-16.0",
             "path": "functions/sync-steam",
             "entrypoint": "src/index.js",
-            "execute": [],
+            "execute": [
+                "role:member"
+            ],
             "events": [],
             "schedule": "",
-            "timeout": 15
+            "timeout": 899
         },
         {
             "$id": "626cb9c5a8105cc1f9d8",
