@@ -1,6 +1,6 @@
-# badgear
-Badge Ar
-![alt text](./wallpaper1.jpg)
+# Badge.ar
+[![image alt text](./Bagedlogo.svg)]("https://www.badge.ar")
+![alt](./wallpaper1.jpg)
 
 ### Overview of My Submission
 
