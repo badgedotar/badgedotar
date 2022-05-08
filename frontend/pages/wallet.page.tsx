@@ -5,9 +5,10 @@ import { useWallet } from "@/src/hooks/useWallet"
 import { pageRoutes } from "@/src/routes"
 import { withUser } from "@/src/utils/withUser"
 import { Box, Card, Container, Stack, TextField, Typography } from "@mui/material"
+import { UserLogged } from "../store/types"
 
-const Page = () => {
-  const { wallet, loading, reload} = useWallet()
+const Page = ({ user }: {user: UserLogged}) => {
+  const { wallet, loading, reload} = useWallet(user)
   if(loading || !wallet) {
     return ( <IsLoading /> );
   }

@@ -29,7 +29,7 @@ const Page: NextPage<PageProps> = ({ user }) => {
     getSteamBadges({
       userId: steamAccounts[0].$id,
       // TODO use real minted data
-      minted: false
+      minted: true
     }).then( (badgesResponse) => {
       setUserBadges( (curr) => ({...curr, ...(badgesResponse.userBadges)}) )
       setCategories( (curr) => ({...curr, ...(badgesResponse.categories)}) )

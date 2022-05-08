@@ -44,9 +44,7 @@ export const LayoutHeader = () => {
       <Container maxWidth='lg'>
         <Stack direction='row' alignItems={'center'} justifyContent='space-between'>
           <Link href='/'>
-            <Typography variant='h6' sx={{cursor: 'pointer'}}>
-                badge.ar
-            </Typography>
+            <img src="/img/logo.svg" alt="Badge.ar" height={56} />
           </Link>
           <Box>
             {loading ? <div /> : (

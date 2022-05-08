@@ -98,6 +98,7 @@ const Page: NextPage<PageProps> = ({ user }) => {
                     <Typography variant='h4' mb={0}>Handle payment</Typography>
                   </Stack>
                   <HandlePayment
+                    user={user}
                     userBadges={Object.values(userBadges).filter( badge => checked[badge.$id] )}
                   />
                 </Box>
