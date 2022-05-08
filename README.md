@@ -1,5 +1,6 @@
 # Badge.ar
-[![image alt text](./Bagedlogo.svg)]("https://www.badge.ar")
+<img src="./Bagedlogo.svg" alt="Bagedlogo" width="50"/>
+[![Bagedlogo](./Bagedlogo.svg)]("https://www.badge.ar")
 ![alt](./wallpaper1.jpg)
 
 ### Overview of My Submission
