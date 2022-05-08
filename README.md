@@ -1,9 +1,7 @@
 # Badge.ar
-<img src="./Bagedlogo.svg" alt="Bagedlogo" width="50"/>
-<img src="./wallpaper1.jpg" alt="wallpaper1" width="50"/>
+<a href="https://www.badge.ar"><img src="./Bagedlogo.svg" alt="Bagedlogo" width="50"/></a>
 
-[![Bagedlogo](./Bagedlogo.svg)]("https://www.badge.ar")
-![wallpaper1](./wallpaper1.jpg)
+<img src="./wallpaper1.jpg" alt="wallpaper1" width="50"/>
 
 ### Overview of My Submission
 
