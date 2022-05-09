@@ -69,10 +69,9 @@ app.get('/sync/orders', async (req, res) => {
   const dbOrders = query.documents
 
   for (let index = 0; index < dbOrders.length; index++) {
+    const order = dbOrders[index];
+    console.log('Minting order', order.$id)
     try {
-      const order = dbOrders[index];
-      console.log('Minting order', order.$id)
-
       const wallet = await cardano.getWallet(order.user)
       const balance = wallet.balance()
       const lovelace = balance.value.lovelace ?? 0
