@@ -52,6 +52,9 @@ export interface UserSteamBadges {
   categories: ICategories
 }
 
+const categoriesCache: ICategories = {}
+const badgesCache: IBadges = {}
+
 export const getSteamBadgesAsync = async ({userId, limit = 100, offset, minted}: getSteamBadgesParams): Promise<UserSteamBadges> => {
   
   const userBadgesQuery = []
@@ -69,15 +72,23 @@ export const getSteamBadgesAsync = async ({userId, limit = 100, offset, minted}:
 
   const badgesIds = userBadgesDocuments.filter(badge => !(badge.minted)).map(badge => badge.badge)
 
-  const {documents: badgesDocuments} =  await appwrite.database.listDocuments<BadgeDocument>('badges', [
-    Query.equal('$id', badgesIds),
-  ], limit, offset)
+  const badgesDocuments = await Promise.all(userBadgesDocuments.map(async (userBadge) => {
+    if (badgesCache[userBadge.badge]) {
+      return badgesCache[userBadge.badge]
+    }
+    const badge = await appwrite.database.getDocument<BadgeDocument>('badges', userBadge.badge)
+    badgesCache[userBadge.badge] = badge
+    return badge
+  }))
 
-  const categoriesIds = badgesDocuments.map(badge => badge.category)
-
-  const {documents: categoriesDocuments} =  await appwrite.database.listDocuments<CategoryDocument>('categories', [
-    Query.equal('$id', categoriesIds),
-  ], limit, offset)
+  const categoriesDocuments = await Promise.all(badgesDocuments.map(async (badge) => {
+    if (categoriesCache[badge.$id]) {
+      return categoriesCache[badge.$id]
+    }
+    const category = await appwrite.database.getDocument<BadgeDocument>('categories', badge.category)
+    categoriesCache[badge.category] = category
+    return category
+  }))
 
   // badges
 
