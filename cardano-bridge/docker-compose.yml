@@ -15,6 +15,9 @@ services:
       - CARDANO_NODE_SOCKET_PATH
       - CARDANO_STORE
       - CARDANO_CONFIG
+      - COLLECTOR_ADDRESS
+      - IPFS_KEY
+      - IPFS_SECRET
     volumes:
       - '~/cardano/testnet/ipc:${CARDANO_NODE_SOCKET_PATH}'
       - '~/cardano/cardano-bridge/testnet/store:${CARDANO_STORE}'
