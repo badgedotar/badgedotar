@@ -12,6 +12,8 @@ env:
   SSH_CERTIFICATE: "${{ secrets.SSH_CERTIFICATE }}"
   DEPLOY_IP: "api.badge.ar"
   APPWRITE_KEY: "${{ secrets.APPWRITE_KEY }}"
+  IPFS_KEY: "${{ secrets.IPFS_KEY }}"
+  IPFS_SECRET: "${{ secrets.IPFS_SECRET }}"
 
 jobs:
   deploy-bridge:
@@ -32,4 +34,6 @@ jobs:
           echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
           export DEPLOY_IP=${{ env.DEPLOY_IP }}
           export APPWRITE_KEY=${{ env.APPWRITE_KEY }}
+          export IPFS_KEY=${{ env.IPFS_KEY }}
+          export IPFS_SECRET=${{ env.IPFS_SECRET }}
           ./scripts/deploy-bridge.sh
