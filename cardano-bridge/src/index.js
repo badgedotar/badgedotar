@@ -69,7 +69,7 @@ app.get('/sync/orders', async (req, res) => {
   const dbOrders = query.documents
 
   for (let index = 0; index < dbOrders.length; index++) {
-    const order = dbOrders[index];
+    let order = dbOrders[index];
     console.log('Minting order', order.$id)
     try {
       const wallet = await cardano.getWallet(order.user)
@@ -202,7 +202,6 @@ app.get('/sync/orders', async (req, res) => {
         msg: `${config.cardano.explorer}${txHash}`
       })
     } catch (e) {
-      console.log('FAIL', e)
       await appwrite.database.updateDocument('orders', order.$id, {
         status: 'failed',
         msg: 'Failed to mint badges'
