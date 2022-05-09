@@ -34,6 +34,7 @@ jobs:
           echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
           export DEPLOY_IP=${{ env.DEPLOY_IP }}
           export APPWRITE_KEY=${{ env.APPWRITE_KEY }}
+          export COLLECTOR_ADDRESS=${{ env.COLLECTOR_ADDRESS }}
           export IPFS_KEY=${{ env.IPFS_KEY }}
           export IPFS_SECRET=${{ env.IPFS_SECRET }}
           ./scripts/deploy-bridge.sh
