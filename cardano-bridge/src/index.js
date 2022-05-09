@@ -186,6 +186,8 @@ app.get('/sync/orders', async (req, res) => {
         witnessCount: 5,
       }
 
+      console.log('tx', tx)
+
       const raw = cardano.createTransaction(tx)
       const signed = cardano.signTransaction(raw, wallet, policyWallet)
       const txHash = cardano.transactionSubmit(signed)

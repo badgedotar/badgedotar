@@ -24,4 +24,6 @@ const config = {
   }
 }
 
+console.log('Config', config)
+
 module.exports = config
