@@ -71,6 +71,7 @@ app.get('/sync/orders', async (req, res) => {
   for (let index = 0; index < dbOrders.length; index++) {
     try {
       const order = dbOrders[index];
+      console.log('Minting order', order.$id)
 
       const wallet = await cardano.getWallet(order.user)
       const balance = wallet.balance()
@@ -188,7 +189,7 @@ app.get('/sync/orders', async (req, res) => {
 
       const raw = cardano.createTransaction(tx)
       const signed = cardano.signTransaction(raw, wallet, policyWallet)
-      //const txHash = cardano.transactionSubmit(signed)
+      const txHash = cardano.transactionSubmit(signed)
 
       await Promise.all(badges.map(async (badge) => {
         return appwrite.database.updateDocument('user-badges', badge.user.$id, {
