@@ -11,6 +11,7 @@ on:
 env:
   SSH_CERTIFICATE: "${{ secrets.SSH_CERTIFICATE }}"
   DEPLOY_IP: "api.badge.ar"
+  COLLECTOR_ADDRESS: "${{ secrets.COLLECTOR_ADDRESS }}"
   APPWRITE_KEY: "${{ secrets.APPWRITE_KEY }}"
   IPFS_KEY: "${{ secrets.IPFS_KEY }}"
   IPFS_SECRET: "${{ secrets.IPFS_SECRET }}"
