@@ -69,53 +69,53 @@ app.get('/sync/orders', async (req, res) => {
   const dbOrders = query.documents
 
   for (let index = 0; index < dbOrders.length; index++) {
-    const order = dbOrders[index];
-
-    const wallet = await cardano.getWallet(order.user)
-    const balance = wallet.balance()
-    const lovelace = balance.value.lovelace ?? 0
-
-    const dbUserBadges = await Promise.all(order.userBadges.map((id) => {
-      return appwrite.getDBUserBadge(id)
-    }))
-    
-    const badges = dbUserBadges.filter((badge) => {
-      if (badge.user.minted) {
-        return false
-      }
-      if (badge.user.user !== order.user) {
-        return false
-      }
-      return true
-    })
-
-    if (badges.length === 0) {
-      await appwrite.database.updateDocument('orders', order.$id, {
-        status: 'failed',
-        msg: 'No valid Badges'
-      })
-      continue
-    }
-
-    const policyWallet = cardano.getPolicyWallet()
-    const policyMintScript = cardano.getPolicyMintScript(policyWallet)
-    const policyId = cardano.getPolicyId(policyMintScript)
-
-    const base = cardano.toLovelace(config.prices.base)
-    const fee = cardano.toLovelace(badges.length * config.prices.fee)
-    const ret = cardano.toLovelace(config.prices.ret)
-    const cost = base + fee + ret
-    const rest = lovelace - cost
-
-    if (lovelace < cost) {
-      await appwrite.database.updateDocument('orders', order.$id, {
-        status: 'failed',
-        msg: 'not enough funds'
-      })
-      continue
-    }
-
     try {
+      const order = dbOrders[index];
+
+      const wallet = await cardano.getWallet(order.user)
+      const balance = wallet.balance()
+      const lovelace = balance.value.lovelace ?? 0
+
+      const dbUserBadges = await Promise.all(order.userBadges.map((id) => {
+        return appwrite.getDBUserBadge(id)
+      }))
+      
+      const badges = dbUserBadges.filter((badge) => {
+        if (badge.user.minted) {
+          return false
+        }
+        if (badge.user.user !== order.user) {
+          return false
+        }
+        return true
+      })
+
+      if (badges.length === 0) {
+        await appwrite.database.updateDocument('orders', order.$id, {
+          status: 'failed',
+          msg: 'No valid Badges'
+        })
+        continue
+      }
+
+      const policyWallet = cardano.getPolicyWallet()
+      const policyMintScript = cardano.getPolicyMintScript(policyWallet)
+      const policyId = cardano.getPolicyId(policyMintScript)
+
+      const base = cardano.toLovelace(config.prices.base)
+      const fee = cardano.toLovelace(badges.length * config.prices.fee)
+      const ret = cardano.toLovelace(config.prices.ret)
+      const cost = base + fee + ret
+      const rest = lovelace - cost
+
+      if (lovelace < cost) {
+        await appwrite.database.updateDocument('orders', order.$id, {
+          status: 'failed',
+          msg: 'not enough funds'
+        })
+        continue
+      }
+      
       const images = await Promise.all(badges.map((badge) => {
         return ipfs.upload(badge)
       }))
@@ -146,13 +146,13 @@ app.get('/sync/orders', async (req, res) => {
           }
         }
       }
-  
+
       const tokenNames = cardano.getTokenNames(policyId, badges.map((badge) => { return badge.user.$id }))
       const tokenAmounts = tokenNames.reduce((amounts, name) => {
         amounts[name] = 1
         return amounts
       }, {})
-  
+
       const mint = tokenNames.map((name) => {
         return {
           action: 'mint',
@@ -161,7 +161,7 @@ app.get('/sync/orders', async (req, res) => {
           script: policyMintScript
         }
       })
-  
+
       const tx = {
         txIn: balance.utxo,
         txOut: [
@@ -185,26 +185,27 @@ app.get('/sync/orders', async (req, res) => {
         metadata,
         witnessCount: 5,
       }
-  
+
       const raw = cardano.createTransaction(tx)
       const signed = cardano.signTransaction(raw, wallet, policyWallet)
-      const txHash = cardano.transactionSubmit(signed)
-  
-      for (let j = 0; j < badges.length; j++) {
-        await appwrite.database.updateDocument('user-badges', badges[j].user.$id, {
+      //const txHash = cardano.transactionSubmit(signed)
+
+      await Promise.all(badges.map(async (badge) => {
+        return appwrite.database.updateDocument('user-badges', badge.user.$id, {
           minted: true,
         })
-      }
-      
+      }))
+
       await appwrite.database.updateDocument('orders', order.$id, {
         minted: true,
         status: 'completed',
         msg: `${config.cardano.explorer}${txHash}`
       })
     } catch (e) {
+      console.log('FAIL', e)
       await appwrite.database.updateDocument('orders', order.$id, {
         status: 'failed',
-        msg: e.toString()
+        msg: 'Failed to mint badges'
       })
     }
   }
