@@ -646,6 +646,17 @@
             ],
             "schedule": "",
             "timeout": 60
+        },
+        {
+            "$id": "6278b0ffe7e287e011bf",
+            "name": "sync-orders",
+            "runtime": "node-16.0",
+            "path": "functions/sync-orders",
+            "entrypoint": "src/index.js",
+            "execute": [],
+            "events": [],
+            "schedule": "* * * * *",
+            "timeout": 300
         }
     ]
 }

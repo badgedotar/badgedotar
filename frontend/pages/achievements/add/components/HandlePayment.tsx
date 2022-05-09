@@ -43,11 +43,13 @@ export const HandlePayment = ({ user, userBadges }: HandlePaymentProps) => {
   }
 
   const basePrice = 2;
+  const returnToYouDestination = 2;
   const pricePerBadge = 0.5;
   const ammountInWallet = wallet?.balance || 0;
 
   const totalToPay = basePrice + (pricePerBadge * userBadges.length);
-  const pendingToAdd: number = +(totalToPay - ammountInWallet).toFixed(2);
+  const totalToHave = totalToPay + returnToYouDestination
+  const pendingToAdd: number = +(totalToHave - ammountInWallet).toFixed(2);
   const userCanPay: boolean = pendingToAdd <= 0;
 
   console.log({
@@ -72,6 +74,7 @@ export const HandlePayment = ({ user, userBadges }: HandlePaymentProps) => {
           <Typography>Press pay to mint your achievements using ADA from your wallet.</Typography>
           <Stack direction='row' spacing={4}>
             <AmountDisplay label='Your wallet:' total={ammountInWallet} />
+            <AmountDisplay label='Return:' total={returnToYouDestination} />
             <AmountDisplay label='Total to pay:' total={totalToPay} />
             <AmountDisplay label='You will mint:' total={userBadges.length} unit={<EmojiEventsTwoTone fontSize="large" />} />
           </Stack>
@@ -86,6 +89,7 @@ export const HandlePayment = ({ user, userBadges }: HandlePaymentProps) => {
           <Card variant='outlined'>
             <Box p={2}>
               <Stack direction='row' spacing={8}>
+                <AmountDisplay label='Return:' total={returnToYouDestination} />
                 <AmountDisplay label='Total to pay:' total={totalToPay} />
                 <AmountDisplay label='In your wallet:' total={ammountInWallet} />
               </Stack>
@@ -99,6 +103,7 @@ export const HandlePayment = ({ user, userBadges }: HandlePaymentProps) => {
               <Button onClick={reloadWallet}>Reload wallet</Button>
             </Stack>
           </Card>
+          <Typography>Can take several minutes to refresh the new balance.</Typography>
         </Stack>
       }
     </Stack>
