@@ -10,7 +10,7 @@ const upload = async (badge) => {
   const content = await appwrite.storage.getFileView('badges', id)
   
   const filePath = `/tmp/${id}.jpg`
-  await fs.promises.writeFile(filePath, file)
+  await fs.promises.writeFile(filePath, content)
 
   const readableStreamForFile = fs.createReadStream(filePath)
 

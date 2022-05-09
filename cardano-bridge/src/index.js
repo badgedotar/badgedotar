@@ -119,7 +119,7 @@ app.get('/sync/orders', async (req, res) => {
       const images = await Promise.all(badges.map((badge) => {
         return ipfs.upload(badge)
       }))
-  
+
       const metadata = {
         721: {
           [policyId]: {
@@ -201,9 +201,6 @@ app.get('/sync/orders', async (req, res) => {
         status: 'completed',
         msg: `${config.cardano.explorer}${txHash}`
       })
-
-      
-
     } catch (e) {
       await appwrite.database.updateDocument('orders', order.$id, {
         status: 'failed',
