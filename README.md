@@ -7,18 +7,16 @@
 
 ## Overview
 
-We build a platform to mint NFTs from achievements.
-In this mvp we can use achievements from our steam account,
-but we hope in the future to add many other providers :D
+BadgeAr is a place where you can transform your awards, trophies, and badges into a digital token (NFT).
 
-In order to achieve this we use appwirte as a backend for
-the interaction between our frontend 
-and our nodes connected to the cardano blockchain.
+When we say "achievements" we mean that you can connect your accounts and create NFTs from awards given to you by that community or provider. For example, you can add you Steam account and create a NFT from your Steam achievements. In other words, you can mint NFTs from your gaming sessions.
 
-What inspired us to do this was the idea of having a centralized place to store our
-of having a decentralized place to store our achievements,
-badges, awards from different platforms and to make these achievements
-be more than just a badge within the platforms where we get them.
+For this MVP, the only abailable provider is Steam, but we plan to add other kind of providers in the future. This could open the posibility to create NFTs from your achievements in other platforms / activities.
+
+In order to achieve this, we use appwirte as a backend to manage
+the interaction between our frontend and our nodes connected to the cardano blockchain.
+
+What inspired us to do this was the idea of having **a decentralized place to store our achievements, badges, awards** from different platforms and to make these achievements be more than just a badge within the platforms where we get them.
 
 <img style="max-width: 400px;" src="./assets/wallpaper1.jpg" alt="wallpaper1"/>
 
