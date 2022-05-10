@@ -1,9 +1,11 @@
-# Badge.ar
-<a href="https://www.badge.ar"><img src="./Bagedlogo.svg" alt="Bagedlogo" width="50"/></a>
+<div style='text-align: center;'>
+<a href="https://www.badge.ar"><img src="./assets/Bagedlogo.svg" alt="Bagedlogo" width="80"/></a>
+<h1>Badge.ar</h1>
+</div>
 
-<img src="./wallpaper1.jpg" alt="wallpaper1"/>
+> Create NFTs from your achievements.
 
-### Overview of My Submission
+## Overview
 
 We build a platform to mint NFTs from achievements.
 In this mvp we can use achievements from our steam account,
@@ -18,6 +20,7 @@ of having a decentralized place to store our achievements,
 badges, awards from different platforms and to make these achievements
 be more than just a badge within the platforms where we get them.
 
+<img style="max-width: 400px;" src="./assets/wallpaper1.jpg" alt="wallpaper1"/>
 
 ### Submission Category: 
 Web3 Wunderkinds
