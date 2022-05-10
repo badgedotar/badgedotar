@@ -19,7 +19,7 @@ the interaction between our frontend and our nodes connected to the cardano bloc
 What inspired us to do this was the idea of having **a decentralized place to store our achievements, badges, awards** from different platforms and to make these achievements be more than just a badge within the platforms where we get them.
 
 <p align="center">
-  <img style="max-width: 350px;" src="./assets/wallpaper1.jpg" alt="wallpaper1"/>
+  <img width="350" src="./assets/wallpaper1.jpg" alt="wallpaper1"/>
 </p>
 
 ### Submission Category: 
