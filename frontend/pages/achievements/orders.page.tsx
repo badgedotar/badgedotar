@@ -10,12 +10,12 @@ const Page = () => {
       <Container maxWidth='lg'>
         <Stack spacing={4}>
           <Typography variant="h4" component="h1">
-            Order history
+            Order history 
           </Typography>
           <TableContainer component={Paper}>
             <TableHead>
               <TableRow>
-                <TableCell>ID</TableCell>
+                <TableCell>Order id</TableCell>
                 <TableCell>Status</TableCell>
                 <TableCell>Address</TableCell>
                 <TableCell>msg</TableCell>

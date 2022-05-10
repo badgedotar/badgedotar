@@ -3,12 +3,14 @@ import { IsLoading } from "@/src/components/IsLoading"
 import { WalletAddress } from "@/src/components/WalletAddress"
 import { useWallet } from "@/src/hooks/useWallet"
 import { IUserBadge } from "@/src/utils/getSteamBadges"
-import { EmojiEventsTwoTone } from "@mui/icons-material"
-import { Box, Button, Card, Divider, Stack, TextField, Tooltip, Typography } from "@mui/material"
+import { Done, EmojiEventsTwoTone } from "@mui/icons-material"
+import { Box, Button, Card, Dialog, Divider, Stack, TextField, Tooltip, Typography } from "@mui/material"
 import { UserLogged } from "../../../../store/types"
 import { appwrite } from "store/global";
 import { useState } from "react"
 import { calculatePrice } from "@/src/utils/paymentCalculation"
+import Link from "next/link"
+import { pageRoutes } from "@/src/routes"
 
 interface HandlePaymentProps {
   user: UserLogged
@@ -19,6 +21,7 @@ export const HandlePayment = ({ user, userBadges }: HandlePaymentProps) => {
   const {wallet, loading: walletLoading, reload: reloadWallet} = useWallet(user)
 
   const [isPaying, setIsPaying] = useState(false);
+  const [orderCreated, setOrderCreated] = useState(false);
   const [destination, setDestination] = useState("");
 
   const generateOrder = async () => {
@@ -30,20 +33,21 @@ export const HandlePayment = ({ user, userBadges }: HandlePaymentProps) => {
       user: user.$id,
       address: destination,
       status: 'new',
-    }, [`user:${user.$id}`])
-    // TODO: Show a msg to the user that the order has been created and close this
-    console.log('NEW', order)
+    }, [`user:${user.$id}`]).catch((e) => {
+      console.error(e)
+    })
+    setOrderCreated(true)
   }
 
   const onDestinationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDestination(e.target.value);
   }
 
-  const handlePay = () => {    
-    void generateOrder()
+  const handlePay = () => {
+    setIsPaying(true);
+    generateOrder()
   }
 
-  const returnToYouDestination = 2;
   const ammountInWallet = wallet?.balance || 0;
   
   const totalToPay = calculatePrice(userBadges.length);
@@ -55,6 +59,25 @@ export const HandlePayment = ({ user, userBadges }: HandlePaymentProps) => {
     wallet,
     isPaying,
   })
+
+  if(orderCreated) {
+    return (
+      <>
+        <IsLoading />
+        <Dialog open={true}>
+          <Box p={4}>
+            <Stack spacing={4} alignItems='center'>
+              <Done fontSize='large' />
+              <Typography variant='h4'>Your order was created!</Typography>
+              <Link href={pageRoutes.orders}>
+                <Button>Go to my orders</Button>
+              </Link>
+            </Stack>
+          </Box>
+        </Dialog>
+      </>
+    )
+  }
 
   if(walletLoading) {
     return ( <IsLoading /> );
@@ -75,9 +98,9 @@ export const HandlePayment = ({ user, userBadges }: HandlePaymentProps) => {
             <AmountDisplay label='Total to pay:' total={totalToPay} />
             <AmountDisplay label='You will mint:' total={userBadges.length} unit={<EmojiEventsTwoTone fontSize="large" />} />
           </Stack>
-          <Typography>Note: 2 ADAs from your payment will be sended to your destination wallet.</Typography>
+          <Typography>Note: 2 ADAs from your payment will be sended to your destination wallet with the minted NFTs.</Typography>
           <Divider />
-          <TextField label='Destination address' sx={{flexGrow: 1}} value={destination} onChange={onDestinationChange}/>
+          <TextField label='Destination address' helperText='Enter the address where the NFTs will be sended.' sx={{flexGrow: 1}} value={destination} onChange={onDestinationChange}/>
           <Divider />
           <Button onClick={handlePay} variant='contained' disabled={!destination.length}>Pay</Button>
         </Stack>
