@@ -1,10 +1,11 @@
 import { pageRoutes } from "@/src/routes";
-import { Avatar, Divider, Drawer, IconButton, Menu, SwipeableDrawer, Typography, useTheme } from "@mui/material";
+import { Avatar, Box, Button, Divider, Drawer, IconButton, Menu, SwipeableDrawer, Typography, useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import React from "react";
 import { appwrite } from "store/global";
 import { MenuOption } from "./MenuOption";
 import MenuIcon from '@mui/icons-material/Menu'
+import Link from "next/link";
 
 interface UserMenuProps {
   user: any;
@@ -45,31 +46,37 @@ export const UserMenu = ({ user, setUser }: UserMenuProps) => {
         open={open}
         onClose={handleClose}
         onOpen={handleOpen}
-        // onClick={handleClose}
-        // transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        // anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <Typography variant='h5' p={2}>Badge.Ar</Typography>
-        <MenuOption py={4} onClick={handleClose} href={pageRoutes.profile}>
-          Profile
-        </MenuOption>
-        <MenuOption py={4} onClick={handleClose} href={pageRoutes.myAchievements}>
-          My NFTs
-        </MenuOption>
-        <MenuOption py={4} onClick={handleClose} href={pageRoutes.wallet}>
-          My wallet
-        </MenuOption>
-        <MenuOption py={4} onClick={handleClose} href={pageRoutes.achievementsAddSelect}>
-          Mint new achievements
-        </MenuOption>
-        <Divider />
-        <MenuOption py={4} onClick={handleClose} href={pageRoutes.about}>
-          About
-        </MenuOption>
-        <Divider />
-        <MenuOption py={4} onClick={() => {handleLogOut(); handleClose()}}>
-          Log out
-        </MenuOption>
+        <Box p={2}>
+          <Typography variant='h5' p={2}>Badge.Ar</Typography>
+          <Divider />
+          <Box my={2}>
+            <Link href={pageRoutes.achievementsAddSelect}>
+              <Button onClick={handleClose} fullWidth variant='contained'>Mint achievements</Button>
+            </Link>
+          </Box>
+          <Divider />
+          <MenuOption py={4} onClick={handleClose} href={pageRoutes.profile}>
+            Profile
+          </MenuOption>
+          <MenuOption py={4} onClick={handleClose} href={pageRoutes.myAchievements}>
+            My NFTs
+          </MenuOption>
+          <MenuOption py={4} onClick={handleClose} href={pageRoutes.wallet}>
+            My wallet
+          </MenuOption>
+          <MenuOption py={4} onClick={handleClose} href={pageRoutes.orders}>
+            Order history
+          </MenuOption>
+          <Divider />
+          <MenuOption py={4} onClick={handleClose} href={pageRoutes.about}>
+            About
+          </MenuOption>
+          <Divider />
+          <MenuOption py={4} onClick={() => {handleLogOut(); handleClose()}}>
+            Log out
+          </MenuOption>
+        </Box>
       </SwipeableDrawer>
     </>
   )
