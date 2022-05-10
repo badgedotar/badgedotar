@@ -20,7 +20,7 @@ jobs:
         with:
           endpoint: 'https://${{ env.HOSTNAME }}/v1'
           project: '${{ env.APPWRITE_PROJECT }}'
-          key: '${{ secrets.APPWRITE_API_KEY }}'
+          key: '${{ secrets.APPWRITE_KEY }}'
       - name: Deploy function sync-steam
         run: |
           cd api && \
