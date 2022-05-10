@@ -1,8 +1,8 @@
-import { Box, Button, ButtonBase, Card, Checkbox, CircularProgress, Container, Dialog, IconButton, Modal, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, ButtonBase, Card, Checkbox, CircularProgress, Container, Dialog, IconButton, Modal, Snackbar, Stack, TextField, Typography } from "@mui/material";
 import { NextPage } from "next";
 import { AchievementResume, IAchievementResume } from "../components/AchievementResume";
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import { ArrowBack, Close, RadioButtonUnchecked } from "@mui/icons-material";
+import { ArrowBack, RadioButtonUnchecked } from "@mui/icons-material";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useEffect, useState } from "react";
 import { UserLogged } from "store/types";
@@ -12,8 +12,11 @@ import useSteam from "@/src/hooks/useSteam";
 import Link from "@/src/Link";
 import { getSteamBadges, UserSteamBadges } from "@/src/utils/getSteamBadges";
 import { HandlePayment } from "./components/HandlePayment";
-import theme from "@/src/theme";
 import background from '../../accounts/assets/dice.jpg';
+import { calculatePrice } from "@/src/utils/paymentCalculation";
+import CloseIcon from '@mui/icons-material/Close';
+import { syncGames } from "@/src/utils/syncGames";
+
 
 interface ICheckedState {
   [key: string]: boolean;
@@ -32,12 +35,40 @@ const IsLoading = () => {
 }
 
 const Page: NextPage<PageProps> = ({ user }) => {
+  const maxToMint = 5;
+  const [isReloading, setIsReloading] = useState(false);
   const [ checked, setChecked ] = useState<ICheckedState>({});
+  const totalChecked = Object.keys(checked).filter(key => checked[key]).length;
+  
+  // max badges
+  const [openMaxAlert, setOpenMaxAlert] = useState(false);
+  const handleCloseMaxAlert = (event: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') { return; }
+    setOpenMaxAlert(false);
+  };
+  const maxAlertSnack = (
+    <>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleCloseMaxAlert}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </>
+  );
   const handleSetChecked = (id: string) => {
-    setChecked({
-      ...checked,
-      [id]: !checked[id]
-    });
+    const newValue = !checked[id];
+    if((totalChecked >= maxToMint) && newValue) {
+      setOpenMaxAlert(true);
+      return;
+    } else {
+      setChecked({
+        ...checked,
+        [id]: !checked[id]
+      });
+    }
   }
   const {steamAccounts, isLoading} = useSteam(user)
   const [userBadges, setUserBadges] = useState<UserSteamBadges['userBadges']>({})
@@ -47,7 +78,18 @@ const Page: NextPage<PageProps> = ({ user }) => {
   const togglePayment = () => {
     setIsPaying(!isPaying)
   }
-
+  const handleSyncGames = () => {
+    setIsReloading(true);
+    if(steamAccounts.length) {
+      syncGames(steamAccounts[0].$id).then((response: any) => {
+        location.reload();
+      }).catch((err) => {
+        location.reload();
+      })
+    } else {
+      setIsReloading(false);
+    }
+  }
   useEffect(() => {
     setLoadingBadges(true)
     if(steamAccounts.length === 0) {
@@ -77,15 +119,30 @@ const Page: NextPage<PageProps> = ({ user }) => {
       </Link>
     </Box>
   )
-  const totalChecked = Object.keys(checked).filter(key => checked[key]).length;
 
   return (
     <Container maxWidth='md'>
       <Stack position='relative' spacing={4} py={4}>
         <Box display='flex' justifyContent='center' flexDirection='column'>
           <Typography variant='h5' textAlign='center'>Select achievements to mint</Typography>
-          {/* <TextField label='Search' /> */}
         </Box>
+        <Button onClick={handleSyncGames}>Reload achievements</Button>
+        <Snackbar
+          open={openMaxAlert}
+          autoHideDuration={6000}
+          onClose={handleCloseMaxAlert}
+          message="You cant mint more than 5 badges at a time."
+          action={maxAlertSnack}
+        />
+        <Dialog open={isReloading}>
+          <Container>
+            <Box p={4}>
+              <IsLoading />
+              <Typography variant='h5'>Reloading your achievements</Typography>
+              <Typography>This could take a few minutes.</Typography>
+            </Box>
+          </Container>
+        </Dialog>
         {isPaying && (
           <Dialog
             open={isPaying}
@@ -130,12 +187,13 @@ const Page: NextPage<PageProps> = ({ user }) => {
               background: '#646464',
             },
           }}
-          disabled={totalChecked === 0}
+          disabled={totalChecked === 0 || isReloading}
           variant='contained'
           fullWidth
           onClick={togglePayment}
         >
           Mint {totalChecked} <EmojiEventsIcon/>
+          {totalChecked > 0 && <Box ml={1}>({calculatePrice(totalChecked)}₳)</Box>}
         </Button>
       </Stack>
     </Container>

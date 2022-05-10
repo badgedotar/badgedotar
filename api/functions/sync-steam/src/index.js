@@ -163,12 +163,12 @@ module.exports = async function (req, res) {
 
   const account = await getAccount(accountId)
   if (!account || account.user !== userId || account.provider !== provider) {
-    return res.json({ error: 'Unauthorized' })
+    return res.json({ error: 'Unauthorized' });
   }
 
   let steamUserBadges = []
   try {
-    steamUserBadges = await getSteamUserBadges(account.providerId, gameId)
+    steamUserBadges = await getSteamUserBadges(account.providerId, gameId);
   } catch (e) {
     return res.json({ error: 'Private Profile' })
   }

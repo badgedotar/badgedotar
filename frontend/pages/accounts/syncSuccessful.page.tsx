@@ -1,15 +1,14 @@
 import { CardOption } from "@/src/components/CardOption"
 import { IsLoading } from "@/src/components/IsLoading"
+import { SteamError } from "@/src/components/SteamError"
 import useSteam from "@/src/hooks/useSteam"
 import { pageRoutes } from "@/src/routes"
 import { syncGames } from "@/src/utils/syncGames"
 import { withUser } from "@/src/utils/withUser"
 import { AccountBalanceWallet, Add, Person } from "@mui/icons-material"
-import { Box, Breadcrumbs, Button, Container, Stack, Step, StepLabel, Stepper, Typography } from "@mui/material"
-import Image from "next/image"
+import { Box, Container, Stack, Step, StepLabel, Stepper, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
 import { UserLogged } from "store/types"
-import steamConfig from './assets/steamConfig.jpg'
 
 interface PageProps {
   user: UserLogged
@@ -24,7 +23,10 @@ const Page = ({ user }: PageProps) => {
     setIsLoadingSync(true);
     if(steamAccounts.length) {
       setIsLoadingSync(true);
-      syncGames(steamAccounts[0].$id).then(() => {
+      syncGames(steamAccounts[0].$id).then((response: any) => {
+        if(response.stdout.includes('Private Profile')) {
+          setError("This account is private.");
+        }
         setIsLoadingSync(false);
       }).catch((err) => {
         setError("An error occurred while syncing games");
@@ -65,40 +67,9 @@ const Page = ({ user }: PageProps) => {
       </Container>
     )
   }
+  
   if(error) {
-    const privateProfileError = error === "This account is private.";
-    return (
-      <Box py={8}>
-        <Container maxWidth="md">
-          <Stack spacing={4}>
-            <Typography variant="h4">
-              {error}
-            </Typography>
-            {privateProfileError && (
-              <>
-              <Typography variant="body1">
-                You must set your profile and game details to public in your Steam profile.
-              </Typography>
-              <Breadcrumbs separator="›">
-                <Typography>Steam</Typography>
-                <Typography>Profile</Typography>
-                <Typography>Edit Profile</Typography>
-                <Typography>My privacy settings</Typography>
-              </Breadcrumbs>
-              <Box>
-                <Image
-                  src={steamConfig}
-                  width={974}
-                  height={515}
-                />
-              </Box>
-              </>
-            )}
-            <Button variant="contained" color="primary" onClick={handleRetry}>Retry</Button>
-          </Stack>
-        </Container>
-      </Box>
-    )
+    return <SteamError error={error} handleRetry={handleRetry} />
   }
   return (
     <Box py={8}>
@@ -149,3 +120,4 @@ const Page = ({ user }: PageProps) => {
 export default withUser(Page, {
   params: {'redirectTo': pageRoutes.login}
 })
+
