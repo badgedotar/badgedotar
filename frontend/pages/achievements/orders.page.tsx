@@ -3,6 +3,12 @@ import { pageRoutes } from "@/src/routes"
 import { withUser } from "@/src/utils/withUser"
 import { Box, Container, Paper, Stack, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material"
 
+const statusLabel = {
+  new: 'Processing',
+  completed: 'Completed',
+  failed: 'Failed',
+}
+
 const Page = () => {
   const { orders } = useOrders();
   return (
@@ -25,7 +31,7 @@ const Page = () => {
               {orders.map((order) => (
                 <TableRow key={order.$id}>
                   <TableCell align="right">{order.$id}</TableCell>
-                  <TableCell align="right">{order.status}</TableCell>
+                  <TableCell align="right">{statusLabel[order.status]}</TableCell>
                   <TableCell align="right">{order.address}</TableCell>
                   <TableCell align="right">{order.msg}</TableCell>
                 </TableRow>
