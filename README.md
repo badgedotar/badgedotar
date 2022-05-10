@@ -1,7 +1,7 @@
-<div style='text-align: center;'>
-<a href="https://www.badge.ar"><img src="./assets/Bagedlogo.svg" alt="Bagedlogo" width="80"/></a>
-<h1>Badge.ar</h1>
-</div>
+<p align="center">
+  <a href="https://www.badge.ar"><img src="./assets/Bagedlogo.svg" alt="Bagedlogo" width="80"/></a>
+  <h1 align="center">Badge.ar</h1>
+</p>
 
 > Create NFTs from your achievements.
 
@@ -18,7 +18,9 @@ the interaction between our frontend and our nodes connected to the cardano bloc
 
 What inspired us to do this was the idea of having **a decentralized place to store our achievements, badges, awards** from different platforms and to make these achievements be more than just a badge within the platforms where we get them.
 
-<img style="max-width: 400px;" src="./assets/wallpaper1.jpg" alt="wallpaper1"/>
+<p align="center">
+  <img style="max-width: 350px;" src="./assets/wallpaper1.jpg" alt="wallpaper1"/>
+</p>
 
 ### Submission Category: 
 Web3 Wunderkinds
