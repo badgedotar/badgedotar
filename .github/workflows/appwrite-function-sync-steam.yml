@@ -3,7 +3,7 @@ on:
   push:
     paths: 
      - "api/functions/sync-steam/**"
-     - ".github/workflows/appwrite-function.yml"
+     - ".github/workflows/appwrite-function-sync-steam.yml"
     branches:
       - main
 
