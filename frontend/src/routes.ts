@@ -8,4 +8,5 @@ export const pageRoutes = {
   profile: '/profile',
   wallet: '/wallet',
   about: '/about',
+  orders: '/achievements/orders'
 }

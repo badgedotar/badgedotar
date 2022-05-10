@@ -28,9 +28,9 @@ const Home: NextPage = () => {
         }}
       >
         <Stack spacing={4}>
-          <Typography variant="h3" component="h1" gutterBottom display='flex' flexDirection='column' alignItems='flex-start'>
+          <Typography my={10} variant="h2" component="h1" gutterBottom display='flex' flexDirection='column' alignItems='flex-start'>
             Mint your{' '}
-            <Box bgcolor={theme.palette.primary.main} height='1em' mt={1} pb={7} boxSizing='border-box'>awards</Box>
+            <Box bgcolor={theme.palette.primary.main} height='1em' mt={1} pb={10} boxSizing='border-box'>awards</Box>
           </Typography>
           <Divider/>
           <WhatIsBadgeAr />

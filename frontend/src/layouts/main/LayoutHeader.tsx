@@ -39,20 +39,25 @@ export const LayoutHeader = () => {
       }, 100)
     })
   }
+  const isLoggedIn = !!user
   return (
     <Box p={2} borderBottom={`solid 1px  ${theme.palette.divider}`}>
       <Container maxWidth='lg'>
         <Stack direction='row' alignItems={'center'} justifyContent='space-between'>
+          {isLoggedIn && (
+            <UserMenu user={user} setUser={setUser} />
+          )}
           <Link href='/'>
-            <img src="/img/logo.svg" alt="Badge.ar" height={56} />
+            <img style={{cursor: 'pointer'}} src="/img/logo.svg" alt="Badge.ar" height={56} />
           </Link>
           <Box>
-            {loading ? <div /> : (
-              user !== null ? (
-                <Stack spacing={4} direction='row' alignItems={'center'}>
-                    <UserMenu user={user} setUser={setUser} />
-                </Stack>
-              ) : (
+            {loading ? <div/> : isLoggedIn ?
+                <Link href={pageRoutes.profile}>
+                  <Avatar sx={{cursor: 'pointer', backgroundColor: theme.palette.secondary.main, color: theme.palette.secondary.contrastText}}>
+                    {user?.name?.charAt(0)}
+                  </Avatar>
+                </Link>
+              :
                 <Stack spacing={4} direction='row' alignItems={'center'}>
                   <NavOption href={pageRoutes.login}>
                     Log in
@@ -63,8 +68,7 @@ export const LayoutHeader = () => {
                     </Button>
                   </Link>
                 </Stack>
-              )
-            )}
+            }
           </Box>
         </Stack>
       </Container>

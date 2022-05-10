@@ -1,5 +1,6 @@
 import { IsLoading } from "@/src/components/IsLoading"
 import useSteam from "@/src/hooks/useSteam"
+import { NavOption } from "@/src/layouts/main/NavOption"
 import { pageRoutes } from "@/src/routes"
 import { getSteamBadges, UserSteamBadges } from "@/src/utils/getSteamBadges"
 import { withUser } from "@/src/utils/withUser"
@@ -46,10 +47,20 @@ const Page: NextPage<PageProps> = ({ user }) => {
     <Box py={4}>
       <Container>
         <Stack spacing={4}>
-          <Stack direction='row' alignItems={'center'} spacing={2}>
-            <TokenOutlined fontSize='large' />
-            <Typography variant='h4' pb={0.5}>Your NFTs </Typography>
-          </Stack>
+          <Box display='flex'>
+            <Stack flexGrow={1} direction='row' alignItems={'center'} spacing={2}>
+              <TokenOutlined fontSize='large' />
+              <Typography variant='h4' pb={0.5}>Minted NFTs </Typography>
+            </Stack>
+            <Stack direction='row' alignItems={'center'} spacing={2}>
+              <NavOption href={pageRoutes.orders}>
+                Your orders
+              </NavOption>
+              <NavOption href={pageRoutes.achievementsAddSelect}>
+                Mint new
+              </NavOption>
+            </Stack>
+          </Box>
           <Box pb={10}>
           <Stack spacing={0}>
               {Object.values(userBadges).map((userBadge) => (
