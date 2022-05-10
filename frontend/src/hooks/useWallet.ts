@@ -17,11 +17,11 @@ export const useWallet = (user: UserLogged) => {
   }
   useEffect(() => {
     setLoading(true);
-    appwrite.database.getDocument<WalletDocument>('wallets', user.$id).then( (wallet) => {
-      if(wallet) {
+    appwrite.database.getDocument<WalletDocument>('wallets', user.$id).then( (walletToSet) => {
+      if(walletToSet) {
         setWallet({
-          ...wallet,
-          balance: wallet.balance / 1000000
+          ...walletToSet,
+          balance: walletToSet.balance / 1000000
         });
       }
       setLoading(false)

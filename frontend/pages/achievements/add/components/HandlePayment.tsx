@@ -3,11 +3,12 @@ import { IsLoading } from "@/src/components/IsLoading"
 import { WalletAddress } from "@/src/components/WalletAddress"
 import { useWallet } from "@/src/hooks/useWallet"
 import { IUserBadge } from "@/src/utils/getSteamBadges"
-import { CopyAllOutlined, EmojiEventsTwoTone } from "@mui/icons-material"
+import { EmojiEventsTwoTone } from "@mui/icons-material"
 import { Box, Button, Card, Divider, Stack, TextField, Tooltip, Typography } from "@mui/material"
 import { UserLogged } from "../../../../store/types"
 import { appwrite } from "store/global";
 import { useState } from "react"
+import { calculatePrice } from "@/src/utils/paymentCalculation"
 
 interface HandlePaymentProps {
   user: UserLogged
@@ -42,14 +43,11 @@ export const HandlePayment = ({ user, userBadges }: HandlePaymentProps) => {
     void generateOrder()
   }
 
-  const basePrice = 2;
   const returnToYouDestination = 2;
-  const pricePerBadge = 0.5;
   const ammountInWallet = wallet?.balance || 0;
-
-  const totalToPay = basePrice + (pricePerBadge * userBadges.length);
-  const totalToHave = totalToPay + returnToYouDestination
-  const pendingToAdd: number = +(totalToHave - ammountInWallet).toFixed(2);
+  
+  const totalToPay = calculatePrice(userBadges.length);
+  const pendingToAdd: number = +(totalToPay - ammountInWallet).toFixed(2);
   const userCanPay: boolean = pendingToAdd <= 0;
 
   console.log({
@@ -74,10 +72,10 @@ export const HandlePayment = ({ user, userBadges }: HandlePaymentProps) => {
           <Typography>Press pay to mint your achievements using ADA from your wallet.</Typography>
           <Stack direction='row' spacing={4}>
             <AmountDisplay label='Your wallet:' total={ammountInWallet} />
-            <AmountDisplay label='Return:' total={returnToYouDestination} />
             <AmountDisplay label='Total to pay:' total={totalToPay} />
             <AmountDisplay label='You will mint:' total={userBadges.length} unit={<EmojiEventsTwoTone fontSize="large" />} />
           </Stack>
+          <Typography>Note: 2 ADAs from your payment will be sended to your destination wallet.</Typography>
           <Divider />
           <TextField label='Destination address' sx={{flexGrow: 1}} value={destination} onChange={onDestinationChange}/>
           <Divider />
@@ -89,7 +87,6 @@ export const HandlePayment = ({ user, userBadges }: HandlePaymentProps) => {
           <Card variant='outlined'>
             <Box p={2}>
               <Stack direction='row' spacing={8}>
-                <AmountDisplay label='Return:' total={returnToYouDestination} />
                 <AmountDisplay label='Total to pay:' total={totalToPay} />
                 <AmountDisplay label='In your wallet:' total={ammountInWallet} />
               </Stack>

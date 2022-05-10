@@ -11,7 +11,7 @@ const processExecution= (functionId: string, execution: Models.Execution, resolv
       appwrite.functions.getExecution(functionId, execution.$id).then((execution: Models.Execution) => {
         processExecution(functionId, execution, resolve, reject)
       })
-    }, 10 * 1000)
+    }, 5 * 1000)
   }
 }
 

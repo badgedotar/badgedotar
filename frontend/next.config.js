@@ -11,8 +11,5 @@ const withMDX = require('@next/mdx')({
 module.exports = withMDX({
   reactStrictMode: true,
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js', 'api.js', 'api.ts', 'page.mdx', 'page.md'],
-  future: {
-    webpack5: true,
-  },
   swcMinify: false
 });
