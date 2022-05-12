@@ -66,7 +66,7 @@ const handler = async (req, res) => {
     return res.status(500).json({ msg: e })
   }
   
-  res.redirect(steamConfig.base)
+  res.redirect(`${steamConfig.base}/accounts/syncSuccessful/`)
 }
 
 export default handler
