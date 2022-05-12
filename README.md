@@ -34,28 +34,29 @@ Web3 Wunderkinds
 [WebApp](https://badge.ar)
 
 ### Team
-- @catrielmuller
-Catriel Müller
+
+#### Catriel Müller ( @catrielmuller )
 <img src="https://avatars.githubusercontent.com/u/2272323?v=4" width="80"/>
-[Dev](https://dev.to/catrielmuller)
+
+[Dev.to](https://dev.to/catrielmuller)
 [GitHub](https://github.com/catrielmuller)
 
-- @gabmetal
-Gabriel Cavallo
+#### Gabriel Cavallo ( @gabmetal )
 <img src="https://avatars.githubusercontent.com/u/12603303?v=4" width="80"/>
-[Dev](https://dev.to/gabmetal)
+
+[Dev.to](https://dev.to/gabmetal)
 [GitHub](https://github.com/gabmetal)
 
-- @matiasgf
-Matias González Fernández
+#### Matias González Fernández ( @matiasgf )
 <img src="https://avatars.githubusercontent.com/u/29680544?v=4" width="80"/>
-[Dev](https://dev.to/matiasgf)
+
+[Dev.to](https://dev.to/matiasgf)
 [GitHub](https://github.com/matiasngf)
 
-- @mrphoenix999
-Fernando Nieva
+#### Fernando Nieva ( @mrphoenix999 ) 
 <img src="https://avatars.githubusercontent.com/u/36790887?v=4" width="80"/>
-[Dev](https://dev.to/mrphoenix999)
+
+[Dev.to](https://dev.to/mrphoenix999)
 [GitHub](https://github.com/mrphoenix999)
 
 ### Additional Resources / Info
