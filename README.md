@@ -26,10 +26,12 @@ Web3 Wunderkinds
 
 ### Link to Code
 [Github](https://github.com/badgedotar/badgedotar)
+
 `{% embed https://github.com/badgedotar/badgedotar %}`
 
 ### Link to App
 [WebApp](https://badge.ar)
+
 `{% embed https://badge.ar %}`
 
 ### Team
@@ -81,6 +83,7 @@ Web3 Wunderkinds
 
 #### Demo Video
 [Youtube](https://www.youtube.com/watch?v=uLtob5RJASY)
+
 `{% embed https://www.youtube.com/embed/uLtob5RJASY %}`
 
 #### Screenshots
