@@ -3,7 +3,7 @@
   <h1 align="center">Badge.ar</h1>
 </p>
 
-> Create NFTs from your achievements.
+> Create NFTs from your Achievements.
 
 ## Overview
 
@@ -27,18 +27,54 @@ Web3 Wunderkinds
 
 ### Link to Code
 `{% embed https://github.com/badgedotar/badgedotar %}`
+[Github](https://github.com/badgedotar/badgedotar)
+
+### Link to App
+`{% embed https://badge.ar %}`
+[WebApp](https://badge.ar)
+
+### Team
+- @catrielmuller
+Catriel Müller
+<img src="https://avatars.githubusercontent.com/u/2272323?v=4" width="80"/>
+[Dev](https://dev.to/catrielmuller)
+[GitHub](https://github.com/catrielmuller)
+
+- @gabmetal
+Gabriel Cavallo
+<img src="https://avatars.githubusercontent.com/u/12603303?v=4" width="80"/>
+[Dev](https://dev.to/gabmetal)
+[GitHub](https://github.com/gabmetal)
+
+- @matiasgf
+Matias González Fernández
+<img src="https://avatars.githubusercontent.com/u/29680544?v=4" width="80"/>
+[Dev](https://dev.to/matiasgf)
+[GitHub](https://github.com/matiasngf)
+
+- @mrphoenix999
+Fernando Nieva
+<img src="https://avatars.githubusercontent.com/u/36790887?v=4" width="80"/>
+[Dev](https://dev.to/mrphoenix999)
+[GitHub](https://github.com/mrphoenix999)
 
 ### Additional Resources / Info
-[Note:] # (Be sure to link to any open source projects that are using your workflow!)
-Docker
-Appwrite
-Cardano nodes and cli
-NFTStorage
 
-[Note:] # Screenshots/demo videos are encouraged!
+#### Tech Stack
+- [Appwrite](https://appwrite.io/)
+- [Docker](https://www.docker.com/)
+- [Cardano](https://cardano.org/)
+- [React](https://reactjs.org/)
+- [NextJs](https://nextjs.org/)
+- [IPFS](https://ipfs.io/)
 
-DEV Usernames:
-@gabmetal
-@catrielmuller
-@matiasgf
-@mrphoenix999
+#### Providers
+- [Vercel](https://vercel.com/)
+- [Pinata](https://www.pinata.cloud/)
+- [GitHub](https://github.com/)
+- [Oracle](https://www.oracle.com/cloud/)
+
+#### Demo Video
+
+
+#### Screenshots
