@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://www.badge.ar"><img src="./assets/Bagedlogo.svg" alt="Bagedlogo" width="80"/></a>
+  <a href="https://www.badge.ar"><img src="https://raw.githubusercontent.com/badgedotar/badgedotar/main/assets/Bagedlogo.svg" alt="Bagedlogo" width="80"/></a>
   <h1 align="center">Badge.ar</h1>
 </p>
 
@@ -19,19 +19,19 @@ the interaction between our frontend and our nodes connected to the cardano bloc
 What inspired us to do this was the idea of having **a decentralized place to store our achievements, badges, awards** from different platforms and to make these achievements be more than just a badge within the platforms where we get them.
 
 <p align="center">
-  <img width="350" src="./assets/wallpaper1.jpg" alt="wallpaper1"/>
+  <img width="350" src="https://github.com/badgedotar/badgedotar/raw/main/assets/wallpaper1.jpg" alt="wallpaper1"/>
 </p>
 
 ### Submission Category: 
 Web3 Wunderkinds
 
 ### Link to Code
-`{% embed https://github.com/badgedotar/badgedotar %}`
 [Github](https://github.com/badgedotar/badgedotar)
+`{% embed https://github.com/badgedotar/badgedotar %}`
 
 ### Link to App
-`{% embed https://badge.ar %}`
 [WebApp](https://badge.ar)
+`{% embed https://badge.ar %}`
 
 ### Team
 
