@@ -80,6 +80,21 @@ Web3 Wunderkinds
 - [Oracle](https://www.oracle.com/cloud/)
 
 #### Demo Video
-[Youtube](https://badge.ar)
+[Youtube](https://www.youtube.com/watch?v=uLtob5RJASY)
+`{% embed https://www.youtube.com/embed/uLtob5RJASY %}`
 
 #### Screenshots
+<p align="center">
+  <img src="https://raw.githubusercontent.com/badgedotar/badgedotar/main/assets/screenshots/01.jpg" width="100%"/>
+  <img src="https://raw.githubusercontent.com/badgedotar/badgedotar/main/assets/screenshots/02.jpg" width="100%"/>
+  <img src="https://raw.githubusercontent.com/badgedotar/badgedotar/main/assets/screenshots/03.jpg" width="100%"/>
+  <img src="https://raw.githubusercontent.com/badgedotar/badgedotar/main/assets/screenshots/04.jpg" width="100%"/>
+  <img src="https://raw.githubusercontent.com/badgedotar/badgedotar/main/assets/screenshots/05.jpg" width="100%"/>
+  <img src="https://raw.githubusercontent.com/badgedotar/badgedotar/main/assets/screenshots/06.jpg" width="100%"/>
+  <img src="https://raw.githubusercontent.com/badgedotar/badgedotar/main/assets/screenshots/07.jpg" width="100%"/>
+  <img src="https://raw.githubusercontent.com/badgedotar/badgedotar/main/assets/screenshots/08.jpg" width="100%"/>
+  <img src="https://raw.githubusercontent.com/badgedotar/badgedotar/main/assets/screenshots/09.jpg" width="100%"/>
+  <img src="https://raw.githubusercontent.com/badgedotar/badgedotar/main/assets/screenshots/10.jpg" width="100%"/>
+  <img src="https://raw.githubusercontent.com/badgedotar/badgedotar/main/assets/screenshots/11.jpg" width="100%"/>
+  <img src="https://raw.githubusercontent.com/badgedotar/badgedotar/main/assets/screenshots/12.jpg" width="100%"/>
+</p>
